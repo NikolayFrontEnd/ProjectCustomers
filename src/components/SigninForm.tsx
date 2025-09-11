@@ -23,6 +23,6 @@ export const SigninForm = () => {
           />
         </div>
         
-        <div className={style.signin__formbutton}>Sign in</div>
+        <button className={style.signin__formbutton}>Sign in</button>
     </>
 }

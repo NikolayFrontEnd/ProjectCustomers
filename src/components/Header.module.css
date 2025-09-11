@@ -1,10 +1,22 @@
 .header{
+    margin-left: 10px;
+    margin-right: 10px;
     display: flex;
     align-items: center;
-    margin: 25px;
     gap: 20px;
     align-items: center;
     justify-content: center;
+    background-color: #fffefe;
+/*     width: 1888;
+height: 112; */
+gap: 32px;
+opacity: 1;
+border-radius: 16px;
+padding-top: 24px;
+padding-right: 32px;
+padding-bottom: 24px;
+padding-left: 32px;
+
 }
 
 .header__menu{
@@ -63,5 +75,4 @@ padding-left: 16px;
 gap: 8px;
 opacity: 1;
 cursor: pointer;
-
 }
