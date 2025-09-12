@@ -1,17 +1,19 @@
+import { useState } from 'react';
 import { Header } from '../components/Header';
 import { MainBlock } from '../components/MainBlock';
 import style from './Main.module.css'
 
+type PageType = 0 | 1 | 2;
+
 const Main = () => {
-    
-    return (
-        <div className = {style.container}>
+  const [page, setPage] = useState<PageType>(0);
 
-      <Header/>
-      <MainBlock/>
-
-        </div>
-    )
-}
+  return (
+    <div className={style.container}>
+      <Header page={page} onPageChange={setPage} />
+      <MainBlock page={page} />
+    </div>
+  );
+};
 
 export default Main;

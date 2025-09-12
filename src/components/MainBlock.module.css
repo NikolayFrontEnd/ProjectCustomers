@@ -105,7 +105,7 @@ border-radius: 8px;
 border-width: 1px;
 padding-left: 16px;
 border-color:#636363;
-
+outline: none;
 }
 .toolbar__blockWithNumber{
   display: flex;
@@ -119,7 +119,6 @@ border-radius: 8px;
 border-width: 1px;
 border: 1px solid #636363;
 background: #FFFFFF;
-
 }
 .toolbar__amount{
 display: flex;
@@ -168,9 +167,7 @@ gap: 10px;
   padding: 16px 32px;
   margin-top: 8px;
 }
-.toolbar{
 
-}
 .usertable__cell {
   width: 456px;
   font-family: Roboto, sans-serif;
@@ -181,6 +178,19 @@ gap: 10px;
   color: #141414;
   vertical-align: middle;
   
+}
+.usertable__cell__status{
+width: 96;
+height: 32;
+gap: 10px;
+opacity: 1;
+border-radius: 32px;
+padding-top: 4px;
+padding-right: 16px;
+padding-bottom: 4px;
+padding-left: 16px;
+color:#1CA139;
+background-color: #f3fdf5;
 }
 
 .usertable__button {
@@ -202,3 +212,16 @@ gap: 10px;
 }
 
 
+.usertable__buttonAbort{
+  border: none;
+  width: 178px;
+height: 48px;
+opacity: 1;
+border-radius: 8px;
+padding-top: 12px;
+padding-right: 16px;
+padding-bottom: 12px;
+padding-left: 16px;
+background-color: #FDF5EB;
+color:#E5831D;
+}

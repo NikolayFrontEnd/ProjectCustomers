@@ -6,6 +6,7 @@ import left from '../assets/Arrow_left.png';
 import right from '../assets/Arrow_right.png';
 import last from '../assets/Last.png';
 import users from '../assets/users.json';
+import { useState } from 'react';
 
 type User = {
     Name: string;
@@ -17,6 +18,10 @@ type User = {
 }
 
 const Toolbar = () =>{
+    const [people,setPeople] = useState<number>(100);
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setPeople(Number(e.target.value)); 
+  };
     return(
         <>
                 <div className = {style.toolbar}>
@@ -37,7 +42,7 @@ const Toolbar = () =>{
               <div> Refresh </div>  
                 </button>
 
-                
+
 <div className = {style.toolbar__buutonsSwitch}>      
               <button className = {style.toolbar__buttonChange}>
                 <img src = {first}/>
@@ -48,13 +53,17 @@ const Toolbar = () =>{
                 </button>
 
 
-<select className={style.toolbar__customselect}>
-        <option value="100">100</option>
+<select className={style.toolbar__customselect}
+        value={people}
+        onChange={handleChange}
+>
+ 
     <option value="1">1</option>
     <option value="20">20</option>
     <option value="30">30</option>
     <option value="40">40</option>
     <option value="50">50</option>
+           <option value="100">100</option>
 </select>
 
               <button className = {style.toolbar__buttonChange}>  <img src = {right}/> </button>
@@ -62,7 +71,7 @@ const Toolbar = () =>{
  </div>
 
               <div className = {style.toolbar__amount}>
-                <div className = {style.toolbar__blockWithNumber}>10</div>
+                <div className = {style.toolbar__blockWithNumber}>{people}</div>
                 <div> of </div>
                 <div> 100 </div>
               </div>
@@ -99,14 +108,80 @@ const UserBlock = () =>{
         </>
     )
 }
-export const MainBlock = () => {
-    
+
+const UserBlockScheduled = () =>{
     return (
         <>
-        <div className = {style.MainBlockConteiner}>     
-<Toolbar/>
-<UserBlock/>
- </div>
+<div className={style['usertable']}>
+      <div className={style['usertable__header']}>
+        <div className={style['usertable__header-cell']}>Name</div>
+        <div className={style['usertable__header-cell']}>Phone</div>
+        <div className={style['usertable__header-cell']}>Email</div>
+        <div className={style['usertable__header-cell']}>Scheduled</div>
+        <div className={style['usertable__header-cell']}>Scheduled</div>
+
+      </div>
+      {users.users.map((user:User, i:number) => (
+        <div key={i} className={style['usertable__user-block']}>
+          <div className={style['usertable__cell']}>{user.Name}</div>
+          <div className={style['usertable__cell']}>{user.Phone}</div>
+          <div className={style['usertable__cell']}>{user.Email}</div>
+         <div className={style['usertable__cell']}>{user.Scheduled}</div>
+         <div className={style['usertable__cell']}>
+            <button className={style['usertable__buttonAbort']}>Abort</button>
+          </div>
+        </div>
+      ))}
+    </div>
         </>
     )
 }
+
+const UserBlockExecuted = () =>{
+    return (
+        <>
+<div className={style['usertable']}>
+      <div className={style['usertable__header']}>
+        <div className={style['usertable__header-cell']}>Name</div>
+        <div className={style['usertable__header-cell']}>Phone</div>
+        <div className={style['usertable__header-cell']}>Email</div>
+        <div className={style['usertable__header-cell']}>Exicuted</div>
+        <div className={style['usertable__header-cell']}>Status</div>
+      </div>
+      {users.users.map((user:User, i:number) => (
+        <div key={i} className={style['usertable__user-block']}>
+          <div className={style['usertable__cell']}>{user.Name}</div>
+          <div className={style['usertable__cell']}>{user.Phone}</div>
+          <div className={style['usertable__cell']}>{user.Email}</div>
+          <div className={style['usertable__cell']}>{user.Executed}</div>
+          <div className={style['usertable__cell__status']}>{user.Status}</div>
+
+        </div>
+      ))}
+    </div>
+        </>
+    )
+}
+type PageType = 0 | 1 | 2;
+
+type MainBlockProps = {
+  page: PageType;
+};
+
+export const MainBlock: React.FC<MainBlockProps> = ({ page }) => {
+  return (
+    <div className={style.MainBlockConteiner}>
+  
+      {page === 0 ? (
+        <>   
+       <Toolbar />
+        <UserBlock />
+         </>
+      ) : page === 1 ? (
+        <UserBlockScheduled />
+      ) : (
+        <UserBlockExecuted />
+      )}
+    </div>
+  );
+};
