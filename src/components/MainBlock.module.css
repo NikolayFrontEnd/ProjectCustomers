@@ -1,0 +1,140 @@
+.toolbar{
+    display: flex;
+}
+.toolbar__search{
+    display: flex;
+}
+
+.toolbar__searchBlock{
+display: flex;
+width: 472px;
+height: 48px;
+opacity: 1;
+border-radius: 8px;
+border-width: 1px;
+padding-right: 16px;
+padding-left: 12px;
+border: 1px solid #636363;
+background-color: white;
+align-items: center;
+margin-left: 16px;
+}
+
+.toolbar__searchicon{
+
+}
+.toolbar__searchinput{
+    border: none;      
+  outline: none;
+  width: 100%;
+  cursor: pointer;
+
+}
+.toolbar__searchinput:focus::placeholder{
+    opacity: 0;
+}
+.toolbar__searchinput{
+
+}
+.toolbar__searhcbutton{
+width: 120px;
+height: 48px;
+opacity: 1;
+border-radius: 8px;
+padding-top: 12px;
+padding-right: 16px;
+padding-bottom: 12px;
+padding-left: 16px;
+background: #1CA139;
+margin-left: 8px;
+border: none;
+color: white;
+cursor: pointer;
+}
+.toolbar__controls{
+    display: flex;
+}
+.toolbar__refreshbutton{
+display: flex;
+width: 120px;
+height: 48px;
+gap: 4px;
+opacity: 1;
+border-radius: 8px;
+padding-top: 12px;
+padding-right: 16px;
+padding-bottom: 12px;
+padding-left: 12px;
+border: none;
+background-color: #E5831D;
+color: #FFFFFF;
+align-items: center;
+justify-content: center;
+}
+.toolbar__buttonChange{
+display: flex;
+background-color: #F2F2F2;
+justify-content: center;
+width: 48px;
+height: 48px;
+padding: 12px;
+gap: 8px;
+opacity: 1;
+border-radius: 8px;
+border: none;
+cursor: pointer;
+}
+.toolbar__customselect{
+cursor: pointer;
+width: 96px;
+height: 48px;
+gap: 4px;
+opacity: 1;
+border-radius: 8px;
+border-width: 1px;
+padding-left: 16px;
+border-color:#636363;
+
+}
+
+/* тут зеленый label */
+.tableheader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 1824px;
+  height: 56px;
+  gap: 32px;
+  opacity: 1;
+  border-radius: 8px;
+  padding: 16px 32px; 
+  background-color: #E8F6EB;
+  box-sizing: border-box; 
+}
+
+.tableheader__name,
+.tableheader__phone,
+.tableheader__email,
+.tableheader__actions {
+  width: 495.3333435058594px;
+  height: 24px;
+  gap: 10px;
+  opacity: 1;
+  font-family: Roboto, sans-serif; 
+  color: #16812E; 
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+font-style: Medium;
+font-size: 16px;
+line-height: 24px;
+letter-spacing: 0.15px;
+vertical-align: middle;
+
+}
+.userBlock__userItem{
+    display: flex;
+}
+..userBlock__item{
+    
+}
