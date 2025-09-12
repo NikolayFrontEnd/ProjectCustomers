@@ -1,13 +1,14 @@
-.MainBlockConteiner{
+ .MainBlockConteiner{
   background-color: white;
   margin: 10px;
   border-radius: 16px;
+  padding: 10px;
 }
 .toolbar{
-    display: flex;
-    justify-content: space-between;
-    padding-top: 10px;
-    padding-right: 10px;
+display: flex;
+justify-content: space-between;
+margin-top: 10px;
+margin-bottom: 20px;
 }
 .toolbar__search{
     display: flex;
@@ -29,7 +30,7 @@ padding-left: 12px;
 border: 1px solid #636363;
 background-color: white;
 align-items: center;
-margin-left: 16px;
+
 }
 
 
@@ -128,15 +129,15 @@ gap: 10px;
 }
 
 .usertable {
-  width: 1824px;
-  padding: 16px;
+ 
+
 }
 
 .usertable__header {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 100%;
+
   height: 56px;
   background-color: #E8F6EB;
   border-radius: 8px;
@@ -160,7 +161,6 @@ gap: 10px;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 100%;
   background-color: white;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -224,4 +224,5 @@ padding-bottom: 12px;
 padding-left: 16px;
 background-color: #FDF5EB;
 color:#E5831D;
-}
+} 
+
