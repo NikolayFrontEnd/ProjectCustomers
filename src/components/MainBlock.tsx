@@ -20,6 +20,7 @@ const Toolbar = () =>{
     return(
         <>
                 <div className = {style.toolbar}>
+
             <div className = {style.toolbar__search}>     
             <div className = {style.toolbar__searchBlock}>
                 <img className = {style.toolbar__searchicon} src = {search}/>
@@ -30,11 +31,14 @@ const Toolbar = () =>{
 
 
         <div className = {style.toolbar__controls}>
+
             <button className = {style.toolbar__refreshbutton}>
                 <img src = {refresh}/>
               <div> Refresh </div>  
                 </button>
 
+                
+<div className = {style.toolbar__buutonsSwitch}>      
               <button className = {style.toolbar__buttonChange}>
                 <img src = {first}/>
               </button>
@@ -43,39 +47,54 @@ const Toolbar = () =>{
                 <img src = {left}/>
                 </button>
 
-            {/*   <input type="number"/> */}
-            <select className={style.toolbar__customselect}>
-    <option value="" disabled selected>100</option>
+
+<select className={style.toolbar__customselect}>
+        <option value="100">100</option>
     <option value="1">1</option>
     <option value="20">20</option>
     <option value="30">30</option>
     <option value="40">40</option>
     <option value="50">50</option>
-    <option value="100">100</option>
-  </select>
+</select>
+
               <button className = {style.toolbar__buttonChange}>  <img src = {right}/> </button>
               <button className = {style.toolbar__buttonChange}>  <img src = {last}/> </button>
+ </div>
 
-              <div>
-                <div>10</div>
-                <div>of 100</div>
+              <div className = {style.toolbar__amount}>
+                <div className = {style.toolbar__blockWithNumber}>10</div>
+                <div> of </div>
+                <div> 100 </div>
               </div>
 
         </div>
+
          </div>
         </>
     )
 }
 
 
-const LabelNames = () =>{
+const UserBlock = () =>{
     return (
         <>
-         <div className={style.tableheader}>
-      <div className={style.tableheader__name}>Name</div>
-      <div className={style.tableheader__phone}>Phone</div>
-      <div className={style.tableheader__email}>Email</div>
-      <div className={style.tableheader__actions}>Actions</div>
+<div className={style['usertable']}>
+      <div className={style['usertable__header']}>
+        <div className={style['usertable__header-cell']}>Name</div>
+        <div className={style['usertable__header-cell']}>Phone</div>
+        <div className={style['usertable__header-cell']}>Email</div>
+        <div className={style['usertable__header-cell']}>Actions</div>
+      </div>
+      {users.users.map((user:User, i:number) => (
+        <div key={i} className={style['usertable__user-block']}>
+          <div className={style['usertable__cell']}>{user.Name}</div>
+          <div className={style['usertable__cell']}>{user.Phone}</div>
+          <div className={style['usertable__cell']}>{user.Email}</div>
+          <div className={style['usertable__cell']}>
+            <button className={style['usertable__button']}>Cancel membership</button>
+          </div>
+        </div>
+      ))}
     </div>
         </>
     )
@@ -84,20 +103,10 @@ export const MainBlock = () => {
     
     return (
         <>
+        <div className = {style.MainBlockConteiner}>     
 <Toolbar/>
-<LabelNames/>
-
-
-        <div className = {style.userBlock}>
-        {users.users.map((user: User, i: number) => (
-          <div key={i} className={style.userBlock__userItem}>
-            <p className = {style.userBlock__item}>Name: {user.Name}</p>
-            <p className = {style.userBlock__item}>Phone: {user.Phone}</p>
-            <p className = {style.userBlock__item}>Email:{user.Email}</p>
-        <button className = {style.userBlock__button}>Cancel membership</button>
-        </div>
-        ))}
-        </div>
+<UserBlock/>
+ </div>
         </>
     )
 }

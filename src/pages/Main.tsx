@@ -7,16 +7,8 @@ const Main = () => {
     return (
         <div className = {style.container}>
 
-
       <Header/>
       <MainBlock/>
-
-
-        <div>
-<div>
-
-</div>
-        </div>
 
         </div>
     )
