@@ -10,6 +10,12 @@ justify-content: space-between;
 margin-top: 10px;
 margin-bottom: 20px;
 }
+.toolbarNumber{
+  display: flex;
+justify-content:flex-end;
+margin-top: 10px;
+margin-bottom: 20px;
+}
 .toolbar__search{
     display: flex;
 }
@@ -96,18 +102,39 @@ border: none;
 cursor: pointer;
 }
 
-.toolbar__customselect{
-cursor: pointer;
-width: 96px;
-height: 48px;
-gap: 4px;
-opacity: 1;
-border-radius: 8px;
-border-width: 1px;
-padding-left: 16px;
-border-color:#636363;
-outline: none;
+.toolbar__selectWrapper {
+  position: relative;
+  display: inline-block;
 }
+
+.toolbar__customselect {
+  cursor: pointer;
+  width: 96px;
+  height: 48px;
+  border-radius: 8px;
+  border: 1px solid #636363;
+  padding-left: 16px;
+  padding-right: 32px; 
+  font-family: Roboto, sans-serif;
+  font-size: 16px;
+  color: #141414;
+  outline: none;
+  appearance: none;
+  background-color: white;
+}
+
+
+.toolbar__selectWrapper::after {
+  content: "▼";
+  font-size: 12px;
+  color: #141414;
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
 .toolbar__blockWithNumber{
   display: flex;
   justify-content: center;
@@ -128,10 +155,7 @@ align-items: center;
 gap: 10px;
 }
 
-.usertable {
- 
 
-}
 
 .usertable__header {
   display: flex;
@@ -177,22 +201,28 @@ gap: 10px;
   letter-spacing: 0.5px;
   color: #141414;
   vertical-align: middle;
+}
+.usertable__cell__status {
+    width: 456px;
+
   
 }
-.usertable__cell__status{
-width: 96;
-height: 32;
-gap: 10px;
-opacity: 1;
-border-radius: 32px;
-padding-top: 4px;
-padding-right: 16px;
-padding-bottom: 4px;
-padding-left: 16px;
-color:#1CA139;
-background-color: #f3fdf5;
+.usertable__cell__status__circle{
+font-family: Roboto, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  color: #141414;
+  vertical-align: middle;
+  border-radius: 16px; /* Слегка уменьшен для соответствия новой ширине */
+  padding: 4px 8px; /* Уменьшенные горизонтальные отступы */
+  text-align: center; /* Центрируем текст */
+  display: inline-block; /* Чтобы ширина адаптировалась к содержимому */
+  color: #1CA139; /* Зеленый для "Success" */
+  background-color: #f3fdf5;
+width:96px;  
 }
-
 .usertable__button {
   width: 178px;
   height: 48px;

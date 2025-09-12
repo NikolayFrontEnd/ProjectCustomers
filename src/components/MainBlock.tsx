@@ -25,7 +25,6 @@ const Toolbar = () =>{
     return(
         <>
                 <div className = {style.toolbar}>
-
             <div className = {style.toolbar__search}>     
             <div className = {style.toolbar__searchBlock}>
                 <img className = {style.toolbar__searchicon} src = {search}/>
@@ -53,24 +52,26 @@ const Toolbar = () =>{
                 </button>
 
 
-<select className={style.toolbar__customselect}
-        value={people}
-        onChange={handleChange}
->
- 
+<div className={style.toolbar__selectWrapper}>
+  <select
+    className={style.toolbar__customselect}
+    value={people}
+    onChange={handleChange}
+  >
     <option value="1">1</option>
     <option value="20">20</option>
     <option value="30">30</option>
     <option value="40">40</option>
     <option value="50">50</option>
-           <option value="100">100</option>
-</select>
+    <option value="100">100</option>
+  </select>
+</div>
 
               <button className = {style.toolbar__buttonChange}>  <img src = {right}/> </button>
               <button className = {style.toolbar__buttonChange}>  <img src = {last}/> </button>
  </div>
 
-              <div className = {style.toolbar__amount}>
+                  <div className = {style.toolbar__amount}>
                 <div className = {style.toolbar__blockWithNumber}>{people}</div>
                 <div> of </div>
                 <div> 100 </div>
@@ -82,7 +83,56 @@ const Toolbar = () =>{
         </>
     )
 }
+const NumberSwitcher = () =>{
+    const [people,setPeople] = useState<number>(100);
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setPeople(Number(e.target.value)); 
+  };
+    return(
+        <>
+        <div className = {style.toolbarNumber}>
+        <div className = {style.toolbar__controls}>
+        <div className = {style.toolbar__buutonsSwitch}>      
+              <button className = {style.toolbar__buttonChange}>
+                <img src = {first}/>
+              </button>
 
+                <button className = {style.toolbar__buttonChange}>
+                <img src = {left}/>
+                </button>
+
+
+<div className={style.toolbar__selectWrapper}>
+  <select
+    className={style.toolbar__customselect}
+    value={people}
+    onChange={handleChange}
+  >
+    <option value="1">1</option>
+    <option value="20">20</option>
+    <option value="30">30</option>
+    <option value="40">40</option>
+    <option value="50">50</option>
+    <option value="100">100</option>
+  </select>
+</div>
+
+              <button className = {style.toolbar__buttonChange}>  <img src = {right}/> </button>
+              <button className = {style.toolbar__buttonChange}>  <img src = {last}/> </button>
+ </div>
+
+                  <div className = {style.toolbar__amount}>
+                <div className = {style.toolbar__blockWithNumber}>{people}</div>
+                <div> of </div>
+                <div> 100 </div>
+              </div>
+
+        </div>
+
+         </div>
+        </>
+    )
+}
 
 const UserBlock = () =>{
     return (
@@ -154,7 +204,10 @@ const UserBlockExecuted = () =>{
           <div className={style['usertable__cell']}>{user.Phone}</div>
           <div className={style['usertable__cell']}>{user.Email}</div>
           <div className={style['usertable__cell']}>{user.Executed}</div>
-          <div className={style['usertable__cell__status']}>{user.Status}</div>
+
+          <div className={style['usertable__cell__status']}>
+            <div className = {style.usertable__cell__status__circle}>  {user.Status}</div>
+            </div>
 
         </div>
       ))}
@@ -178,9 +231,15 @@ export const MainBlock: React.FC<MainBlockProps> = ({ page }) => {
         <UserBlock />
          </>
       ) : page === 1 ? (
+        <>  
+    <NumberSwitcher />
         <UserBlockScheduled />
+        </>
       ) : (
+        <>  
+    <NumberSwitcher />
         <UserBlockExecuted />
+        </>
       )}
     </div>
   );
