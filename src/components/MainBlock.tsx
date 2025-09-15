@@ -26,21 +26,6 @@ const scrollToTop = (): void => {
   });
 };
 
-const scrollup = (): void => {
-
-  };
-
-const scrollupUltra = (): void => {
-
-  };
-
-const scrollDown = (): void => {
-
-  };
-
-const scrollDownUltra = (): void => {
-
-  };
 type ToolbarProps = {
   page: number;
   people: number;
@@ -101,7 +86,7 @@ const Toolbar = ({
     value={people}
     onChange={handleChange}
   >
-    <option value="1">1</option>
+    <option value="10">10</option>
     <option value="20">20</option>
     <option value="30">30</option>
     <option value="40">40</option>
