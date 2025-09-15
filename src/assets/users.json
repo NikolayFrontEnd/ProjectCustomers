@@ -13,7 +13,7 @@
       "Phone": "+74912345678",
       "Email": "liam.garcia@gmail.com",
       "Scheduled": "01/15/2025",
-      "Status": "Failed",
+      "Status": "Success",
       "Executed": "03/20/2025"
     },
     {
@@ -37,7 +37,7 @@
       "Phone": "+44112345678",
       "Email": "ava.rodriguez@icloud.com",
       "Scheduled": "04/12/2025",
-      "Status": "Success",
+      "Status": "Failed",
       "Executed": "07/01/2025"
     },
     {
@@ -45,7 +45,7 @@
       "Phone": "+81912345678",
       "Email": "ethan.hernandez@hotmail.com",
       "Scheduled": "05/20/2025",
-      "Status": "Failed",
+      "Status": "Success",
       "Executed": "08/10/2025"
     },
     {

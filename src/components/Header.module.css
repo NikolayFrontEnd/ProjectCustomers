@@ -23,19 +23,17 @@ padding-left: 32px;
 .header__menu{
     display: flex;
 background-color: #F2F2F2;
-width: 1652;
-height: 64;
 border-radius: 16px;
 gap: 8px;
 opacity: 1;
 padding: 8px;
-
+overflow-x: auto;
 }
 .header__logo{
     width: 140px;
 height: 64px;
 opacity: 1;
-
+flex-shrink: 0;
 }
 
 .header__menu__item__active{

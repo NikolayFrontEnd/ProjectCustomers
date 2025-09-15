@@ -8,9 +8,8 @@ export const SignIn = () => {
         <div className= {style.signin__logo}>
             <img src = {logo}/>
         </div>
-      <div className={style.signin__form}>
+   
         <SigninForm />
-      </div>
         </div>
     )
 }

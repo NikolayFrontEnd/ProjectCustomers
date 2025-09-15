@@ -6,8 +6,8 @@ import left from '../assets/Arrow_left.png';
 import right from '../assets/Arrow_right.png';
 import last from '../assets/Last.png';
 import users from '../assets/users.json';
-import { useState } from 'react';
-
+import Buttons from '../assets/Buttons.png';
+import { useRef, useState } from 'react';
 type User = {
     Name: string;
     Phone: string;
@@ -16,7 +16,6 @@ type User = {
   Status: string;
   Executed: string;
 }
-
 const Toolbar = () =>{
     const [people,setPeople] = useState<number>(100);
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -159,7 +158,7 @@ const UserBlock = () =>{
     )
 }
 
-const UserBlockScheduled = () =>{
+const UserBlockScheduled = ({ showModal }: { showModal: () => void }) =>{
     return (
         <>
 <div className={style['usertable']}>
@@ -178,7 +177,7 @@ const UserBlockScheduled = () =>{
           <div className={style['usertable__cell']}>{user.Email}</div>
          <div className={style['usertable__cell']}>{user.Scheduled}</div>
          <div className={style['usertable__cell']}>
-            <button className={style['usertable__buttonAbort']}>Abort</button>
+            <button onClick={showModal}  className={style['usertable__buttonAbort']}>Abort</button>
           </div>
         </div>
       ))}
@@ -188,6 +187,15 @@ const UserBlockScheduled = () =>{
 }
 
 const UserBlockExecuted = () =>{
+  // в этой функции проверяю, какой status 
+ const getStatusClass = (status: string) => {
+    const baseClass = style.usertable__cell__status__circle;
+    const statusClass = status === "Success" 
+      ? style.usertable__cell__status__circle__success 
+      : style.usertable__cell__status__circle__failed;
+    return `${baseClass} ${statusClass}`;
+  };
+
     return (
         <>
 <div className={style['usertable']}>
@@ -206,8 +214,9 @@ const UserBlockExecuted = () =>{
           <div className={style['usertable__cell']}>{user.Executed}</div>
 
           <div className={style['usertable__cell__status']}>
-            <div className = {style.usertable__cell__status__circle}>  {user.Status}</div>
-            </div>
+              <div className={getStatusClass(user.Status)}>
+                {user.Status}
+              </div>            </div>
 
         </div>
       ))}
@@ -222,9 +231,41 @@ type MainBlockProps = {
 };
 
 export const MainBlock: React.FC<MainBlockProps> = ({ page }) => {
+  const dialog = useRef<HTMLDialogElement>(null);
+console.log(dialog.current);
+  const showModal = () => {
+    if (dialog.current) {
+      dialog.current.showModal();
+    }
+  };
+
+  const closeModal = () => {
+    if (dialog.current) {
+      dialog.current.close();
+    }
+  };
+
+    const handleDialogClick = (e: React.MouseEvent<HTMLDialogElement>) => {
+    if (e.target === e.currentTarget) {
+      closeModal();
+    }
+  };
   return (
     <div className={style.MainBlockConteiner}>
-  
+<dialog ref = {dialog}
+onClick={handleDialogClick}
+className={style.MainBlockConteiner__modal}
+>
+  <div className = {style.MainBlockConteiner__modalBlock}> 
+    <img className = {style.MainBlockConteiner__modalBlock__img} onClick = {closeModal} src = {Buttons}/>
+    <div className = {style.MainBlockConteiner__modalBlock__text}>Are you sure you want to abort this Scheduled Membership Cancellation?</div>
+    <div className={style.MainBlockConteiner__buttonBlocks}>
+     <button onClick = {closeModal} className = {style.MainBlockConteiner__buttonCancel}>Cancel</button>
+     <button className = {style.MainBlockConteiner__buttonAbort}>Abort</button>
+    </div>
+  </div>
+
+</dialog>
       {page === 0 ? (
         <>   
        <Toolbar />
@@ -233,7 +274,7 @@ export const MainBlock: React.FC<MainBlockProps> = ({ page }) => {
       ) : page === 1 ? (
         <>  
     <NumberSwitcher />
-        <UserBlockScheduled />
+        <UserBlockScheduled showModal={showModal}/>
         </>
       ) : (
         <>  

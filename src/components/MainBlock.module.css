@@ -215,13 +215,20 @@ font-family: Roboto, sans-serif;
   letter-spacing: 0.5px;
   color: #141414;
   vertical-align: middle;
-  border-radius: 16px; /* Слегка уменьшен для соответствия новой ширине */
-  padding: 4px 8px; /* Уменьшенные горизонтальные отступы */
-  text-align: center; /* Центрируем текст */
-  display: inline-block; /* Чтобы ширина адаптировалась к содержимому */
-  color: #1CA139; /* Зеленый для "Success" */
+  border-radius: 16px; 
+  padding: 4px 8px; 
+  text-align: center; 
+  display: inline-block; 
   background-color: #f3fdf5;
 width:96px;  
+}
+.usertable__cell__status__circle__success {
+  color: #1CA139;
+  background-color: #f3fdf5;
+}
+.usertable__cell__status__circle__failed {
+  color: #E53E3E;
+  background-color: #fdf3f3;
 }
 .usertable__button {
   width: 178px;
@@ -254,5 +261,89 @@ padding-bottom: 12px;
 padding-left: 16px;
 background-color: #FDF5EB;
 color:#E5831D;
+cursor: pointer;
 } 
 
+
+.MainBlockConteiner__modal{
+  width: 400px;
+height: 228px;
+opacity: 1;
+border-radius: 12px;
+box-shadow: 4px 4px 8px 0px #0000000A;
+background-color:#FFFFFF;
+border:none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.MainBlockConteiner__modal::backdrop {
+  background: rgba(0, 0, 0.1, 0.5);
+}
+.MainBlockConteiner__buttonBlocks{
+display: flex;
+gap:20px;
+justify-content: center;
+}
+.MainBlockConteiner__buttonCancel{
+width: 160px;
+height: 48px;
+opacity: 1;
+border-radius: 8px;
+padding-top: 12px;
+padding-right: 16px;
+padding-bottom: 12px;
+padding-left: 16px;
+background-color:#F2F2F2;
+font-family: Roboto;
+font-weight: 500;
+font-style: Medium;
+font-size: 16px;
+line-height: 24px;
+letter-spacing: 0.15px;
+text-align: center;
+border: none;
+cursor: pointer;
+}
+.MainBlockConteiner__buttonAbort{
+width: 160px;
+height: 48px;
+opacity: 1;
+border-radius: 8px;
+padding-top: 12px;
+padding-right: 16px;
+padding-bottom: 12px;
+padding-left: 16px;
+background-color: #E5831D;
+font-family: Roboto;
+font-weight: 500;
+font-style: Medium;
+font-size: 16px;
+line-height: 24px;
+letter-spacing: 0.15px;
+text-align: center;
+border:none
+}
+.MainBlockConteiner__modalBlock__text{
+  padding-top: 68px;
+  font-family: Roboto;
+font-weight: 400;
+font-style: Regular;
+font-size: 16px;
+line-height: 24px;
+letter-spacing: 0.5px;
+text-align: center;
+vertical-align: middle;
+color:#141414;
+margin-bottom: 40px;
+}
+.MainBlockConteiner__modalBlock {
+  position: relative; 
+}
+.MainBlockConteiner__modalBlock__img{
+cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}

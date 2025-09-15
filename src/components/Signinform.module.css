@@ -1,7 +1,21 @@
+.signin__form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 448px;
+  height: 332px;
+  padding: 64px;
+  gap: 32px;
+  border-radius: 16px;
+  background: #FFFFFF;
+  margin-top: 40px;
+}
+
 .signin__formbutton {
   display: flex;
   background: #A4D9B0;
-  width: 320px;
+  width: 350px;
   height: 48px;
   opacity: 1;
   border-radius: 8px;
@@ -15,11 +29,27 @@
   font-size: 16px;
   line-height: 24px;
   letter-spacing: 0.15px;
-  transition: background-color 0.2s ease;
+  border: none;
 }
-
-
-
+.signin__formbutton__active{
+    display: flex;
+  width: 350px;
+  height: 48px;
+  opacity: 1;
+  border-radius: 8px;
+  padding: 12px 16px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  font-family: Roboto;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+  border: none;
+background-color: #1CA139;
+}
 .signin__forminputblock {
   width: 320px;
   height: 48px;
@@ -61,4 +91,39 @@
 }
 .signin__forminput:focus::placeholder {
   color: transparent;
+}
+
+.signin__forminputBlock__errormessage{
+color:red;
+}
+
+
+@media (max-width:680px){
+  .signin__form {
+     width: 340px;
+}
+}
+
+@media (max-width:580px){
+  .signin__form {
+     width: 300px;
+}
+}
+@media (max-width:480px){
+  .signin__form {
+     width: 150px;
+}
+.signin__formbutton {
+
+  width: 230px;
+
+}
+.signin__formbutton__active{
+  width: 230px;
+
+}
+.signin__forminputblock {
+  width: 200px;
+
+}
 }
