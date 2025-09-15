@@ -36,18 +36,81 @@ type ToolbarProps = {
   goNext: () => void;
   goPrev: () => void;
 };
-const Toolbar = ({
-  page,
+
+const NumberSwitcher = ({
   people,
-  totalUsers,
+  setPeople,
+  goFirst,
+  goLast,
+  goNext,
+  goPrev,
+}: ToolbarProps) =>{
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setPeople(Number(e.target.value)); 
+  };
+    return(
+        <>
+        <div className = {style.toolbarNumber}>
+        <div className = {style.toolbar__controls}>
+
+            <button className = {style.toolbar__refreshbutton}>
+                <img src = {refresh}/>
+              <div> Refresh </div>  
+                </button>
+
+
+<div className = {style.toolbar__buutonsSwitch}>      
+              <button onClick={goFirst} className = {style.toolbar__buttonChange}>
+                <img src = {first}/>
+              </button>
+
+                <button onClick={goPrev} className = {style.toolbar__buttonChange}>
+                <img src = {left}/>
+                </button>
+
+
+<div className={style.toolbar__selectWrapper}>
+  <select
+    className={style.toolbar__customselect}
+    value={people}
+    onChange={handleChange}
+  >
+    <option value="10">10</option>
+    <option value="20">20</option>
+    <option value="30">30</option>
+    <option value="40">40</option>
+    <option value="50">50</option>
+    <option value="100">100</option>
+  </select>
+</div>
+
+              <button onClick={goNext} className = {style.toolbar__buttonChange}>  <img src = {right}/> </button>
+              <button  onClick={goLast} className = {style.toolbar__buttonChange}>  <img src = {last}/> </button>
+ </div>
+
+                  <div className = {style.toolbar__amount}>
+                <div className = {style.toolbar__blockWithNumber}>{people}</div>
+                <div> of </div>
+                <div> 100 </div>
+              </div>
+
+        </div>
+
+         </div>
+        </>
+    )
+}
+
+
+const Toolbar = ({
+  people,
   setPeople,
   goFirst,
   goLast,
   goNext,
   goPrev,
 }: ToolbarProps) => {
-/*     const [people,setPeople] = useState<number>(100);
- */  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setPeople(Number(e.target.value)); 
   };
     return(
@@ -111,56 +174,6 @@ const Toolbar = ({
         </>
     )
 }
-const NumberSwitcher = () =>{
-    const [people,setPeople] = useState<number>(100);
-  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setPeople(Number(e.target.value)); 
-  };
-    return(
-        <>
-        <div className = {style.toolbarNumber}>
-        <div className = {style.toolbar__controls}>
-        <div className = {style.toolbar__buutonsSwitch}>      
-              <button  className = {style.toolbar__buttonChange}>
-                <img src = {first}/>
-              </button>
-
-                <button className = {style.toolbar__buttonChange}>
-                <img src = {left}/>
-                </button>
-
-
-<div className={style.toolbar__selectWrapper}>
-  <select
-    className={style.toolbar__customselect}
-    value={people}
-    onChange={handleChange}
-  >
-    <option value="1">1</option>
-    <option value="20">20</option>
-    <option value="30">30</option>
-    <option value="40">40</option>
-    <option value="50">50</option>
-    <option value="100">100</option>
-  </select>
-</div>
-
-              <button className = {style.toolbar__buttonChange}>  <img src = {right}/> </button>
-              <button className = {style.toolbar__buttonChange}>  <img src = {last}/> </button>
- </div>
-
-                  <div className = {style.toolbar__amount}>
-                <div className = {style.toolbar__blockWithNumber}>{people}</div>
-                <div> of </div>
-                <div> 100 </div>
-              </div>
-
-        </div>
-
-         </div>
-        </>
-    )
-}
 
 type UserBlockProps = {
   page: number;
@@ -168,7 +181,6 @@ type UserBlockProps = {
 };
 
 const UserBlock = ({ page, pageSize }: UserBlockProps) => {
-  const totalUsers = users.users.length;
   const currentUsers = users.users.slice(
     page * pageSize,
     page * pageSize + pageSize
@@ -197,72 +209,73 @@ const UserBlock = ({ page, pageSize }: UserBlockProps) => {
   );
 };
 
-const UserBlockScheduled = ({ showModal }: { showModal: () => void }) =>{
-    return (
-        <>
-<div className={style['usertable']}>
+const UserBlockScheduled = ({ page, pageSize, showModal }: UserBlockProps & { showModal: () => void }) => {
+  const currentUsers = users.users.slice(page * pageSize, page * pageSize + pageSize);
+
+  return (
+    <div className={style['usertable']}>
       <div className={style['usertable__header']}>
         <div className={style['usertable__header-cell']}>Name</div>
         <div className={style['usertable__header-cell']}>Phone</div>
         <div className={style['usertable__header-cell']}>Email</div>
         <div className={style['usertable__header-cell']}>Scheduled</div>
-        <div className={style['usertable__header-cell']}>Scheduled</div>
-
+        <div className={style['usertable__header-cell']}>Actions</div>
       </div>
-      {users.users.map((user:User, i:number) => (
+
+      {currentUsers.map((user: User, i: number) => (
         <div key={i} className={style['usertable__user-block']}>
           <div className={style['usertable__cell']}>{user.Name}</div>
           <div className={style['usertable__cell']}>{user.Phone}</div>
           <div className={style['usertable__cell']}>{user.Email}</div>
-         <div className={style['usertable__cell']}>{user.Scheduled}</div>
-         <div className={style['usertable__cell']}>
-            <button onClick={showModal}  className={style['usertable__buttonAbort']}>Abort</button>
+          <div className={style['usertable__cell']}>{user.Scheduled}</div>
+          <div className={style['usertable__cell']}>
+            <button onClick={showModal} className={style['usertable__buttonAbort']}>
+              Abort
+            </button>
           </div>
         </div>
       ))}
     </div>
-        </>
-    )
-}
+  );
+};
 
-const UserBlockExecuted = () =>{
-  // в этой функции проверяю, какой status 
- const getStatusClass = (status: string) => {
+const UserBlockExecuted = ({ page, pageSize }: UserBlockProps) => {
+  const currentUsers = users.users.slice(page * pageSize, page * pageSize + pageSize);
+
+  const getStatusClass = (status: string) => {
     const baseClass = style.usertable__cell__status__circle;
-    const statusClass = status === "Success" 
-      ? style.usertable__cell__status__circle__success 
-      : style.usertable__cell__status__circle__failed;
+    const statusClass =
+      status === "Success"
+        ? style.usertable__cell__status__circle__success
+        : style.usertable__cell__status__circle__failed;
     return `${baseClass} ${statusClass}`;
   };
 
-    return (
-        <>
-<div className={style['usertable']}>
+  return (
+    <div className={style['usertable']}>
       <div className={style['usertable__header']}>
         <div className={style['usertable__header-cell']}>Name</div>
         <div className={style['usertable__header-cell']}>Phone</div>
         <div className={style['usertable__header-cell']}>Email</div>
-        <div className={style['usertable__header-cell']}>Exicuted</div>
+        <div className={style['usertable__header-cell']}>Executed</div>
         <div className={style['usertable__header-cell']}>Status</div>
       </div>
-      {users.users.map((user:User, i:number) => (
+
+      {currentUsers.map((user: User, i: number) => (
         <div key={i} className={style['usertable__user-block']}>
           <div className={style['usertable__cell']}>{user.Name}</div>
           <div className={style['usertable__cell']}>{user.Phone}</div>
           <div className={style['usertable__cell']}>{user.Email}</div>
           <div className={style['usertable__cell']}>{user.Executed}</div>
-
           <div className={style['usertable__cell__status']}>
-              <div className={getStatusClass(user.Status)}>
-                {user.Status}
-              </div>            </div>
-
+            <div className={getStatusClass(user.Status)}>{user.Status}</div>
+          </div>
         </div>
       ))}
     </div>
-        </>
-    )
-}
+  );
+};
+
 type PageType = 0 | 1 | 2;
 
 type MainBlockProps = {
@@ -353,13 +366,35 @@ export const MainBlock: React.FC<MainBlockProps> = ({ page }) => {
         </>
       ) : page === 1 ? (
         <>
-          <NumberSwitcher />
-          <UserBlockScheduled showModal={showModal} />
+          <NumberSwitcher 
+           page={currentPage}
+            people={pageSize}
+            totalUsers={totalUsers}
+            setPeople={setPageSize}
+            goFirst={goFirst}
+            goLast={goLast}
+            goNext={goNext}
+            goPrev={goPrev}
+          />
+      <UserBlockScheduled
+      page={currentPage}
+      pageSize={pageSize}
+      showModal={showModal}
+    />
         </>
       ) : (
         <>
-          <NumberSwitcher />
-          <UserBlockExecuted />
+          <NumberSwitcher 
+           page={currentPage}
+            people={pageSize}
+            totalUsers={totalUsers}
+            setPeople={setPageSize}
+            goFirst={goFirst}
+            goLast={goLast}
+            goNext={goNext}
+            goPrev={goPrev}
+          />
+    <UserBlockExecuted page={currentPage} pageSize={pageSize} />
         </>
       )}
 
