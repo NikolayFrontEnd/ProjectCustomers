@@ -75,3 +75,52 @@ gap: 8px;
 opacity: 1;
 cursor: pointer;
 }
+@media(max-width:919px){
+.header__menu__item{
+font-size: 14px;
+width: 340px;
+}
+
+.header__menu__item__active{
+font-size: 14px;
+width: 340px;
+}
+}
+@media(max-width:600px){
+.header__menu__item{
+font-size: 14px;
+width: 280px;
+height: 88px;
+}
+
+.header__menu__item__active{
+font-size: 14px;
+width: 280px;
+height: 88px;
+}
+}
+
+
+@media(max-width:593px){
+.header__menu__item{
+font-size: 14px;
+height: 150px;
+}
+
+.header__menu__item__active{
+font-size: 14px;
+height: 150px;
+}
+}
+
+@media(max-width:593px){
+.header__menu__item{
+font-size: 14px;
+height: 200px;
+}
+
+.header__menu__item__active{
+font-size: 14px;
+height: 200px;
+}
+}

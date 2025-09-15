@@ -347,3 +347,34 @@ cursor: pointer;
   top: 10px;
   right: 10px;
 }
+
+@media(max-width:1269px){
+.toolbar__searchBlock{
+  width:300px;
+}
+}
+
+@media(max-width:1110px){
+.toolbar__searchBlock{
+  width:240px;
+}
+}
+
+@media(max-width:1045px){
+.toolbar__searchBlock{
+  width:200px;
+}
+.toolbar__searhcbutton{
+width: 80px;
+}
+.toolbar__refreshbutton{
+width: 80px;
+}
+}
+@media(max-width:919px){
+.toolbar{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+}

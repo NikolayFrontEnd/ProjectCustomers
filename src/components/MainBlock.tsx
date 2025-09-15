@@ -23,14 +23,14 @@ const Toolbar = () =>{
   };
     return(
         <>
-                <div className = {style.toolbar}>
+            <div className = {style.toolbar}>
             <div className = {style.toolbar__search}>     
             <div className = {style.toolbar__searchBlock}>
-                <img className = {style.toolbar__searchicon} src = {search}/>
-                <input className = {style.toolbar__searchinput} placeholder="Search"/>
+            <img className = {style.toolbar__searchicon} src = {search}/>
+            <input className = {style.toolbar__searchinput} placeholder="Search"/>
             </div>
             <button className = {style.toolbar__searhcbutton}>Search</button>
-        </div>
+            </div>
 
 
         <div className = {style.toolbar__controls}>
