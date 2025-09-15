@@ -24,7 +24,6 @@ type MainBlockProps = {
   page: PageType;
 };
 
-//функция для прокрутки вверх:
 const scrollToTop = (): void => {
   window.scrollTo({
     top: 0,
@@ -89,12 +88,10 @@ const NumberSwitcher = ({
             </div>
 
             <button onClick={goNext} className={style.toolbar__buttonChange}>
-              {" "}
-              <img src={right} />{" "}
+              <img src={right} />
             </button>
             <button onClick={goLast} className={style.toolbar__buttonChange}>
-              {" "}
-              <img src={last} />{" "}
+              <img src={last} />
             </button>
           </div>
 
@@ -165,12 +162,10 @@ const Toolbar = ({
             </div>
 
             <button onClick={goNext} className={style.toolbar__buttonChange}>
-              {" "}
-              <img src={right} />{" "}
+              <img src={right} />
             </button>
             <button onClick={goLast} className={style.toolbar__buttonChange}>
-              {" "}
-              <img src={last} />{" "}
+              <img src={last} />
             </button>
           </div>
 
@@ -304,7 +299,7 @@ const UserBlockExecuted = ({ page, pageSize }: UserBlockProps) => {
 export const MainBlock: React.FC<MainBlockProps> = ({ page }) => {
   const [showButton, setShowButton] = useState<boolean>(false);
 
-  // управляем пагинацией здесь
+  // pagination managing
   const [currentPage, setCurrentPage] = useState(0);
   const [pageSize, setPageSize] = useState(10);
 
@@ -317,7 +312,6 @@ export const MainBlock: React.FC<MainBlockProps> = ({ page }) => {
     setCurrentPage((prev) => Math.min(prev + 1, totalPages - 1));
   const goPrev = () => setCurrentPage((prev) => Math.max(prev - 1, 0));
 
-  // кнопка "вверх"
   useEffect(() => {
     const handleScroll = () => {
       setShowButton(window.scrollY > 300);

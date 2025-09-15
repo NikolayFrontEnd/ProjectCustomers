@@ -12,7 +12,7 @@
   margin-top: 40px;
 }
 
-.signin__formbutton {
+/* .signin__formbutton {
   display: flex;
   background: #a4d9b0;
   width: 350px;
@@ -49,7 +49,7 @@
   letter-spacing: 0.15px;
   border: none;
   background-color: #1ca139;
-}
+} */
 .signin__forminputblock {
   width: 320px;
   height: 48px;
