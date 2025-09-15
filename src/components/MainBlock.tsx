@@ -1,22 +1,22 @@
-import style from './MainBlock.module.css';
-import search from '../assets/Search.png';
-import refresh from '../assets/Refresh.png';
-import first from '../assets/First.png';
-import left from '../assets/Arrow_left.png';
-import right from '../assets/Arrow_right.png';
-import last from '../assets/Last.png';
-import users from '../assets/users.json';
-import Buttons from '../assets/Buttons.png';
-import up from '../assets/Up.png';
-import { useEffect, useRef, useState } from 'react';
+import style from "./MainBlock.module.css";
+import search from "../assets/Search.png";
+import refresh from "../assets/Refresh.png";
+import first from "../assets/First.png";
+import left from "../assets/Arrow_left.png";
+import right from "../assets/Arrow_right.png";
+import last from "../assets/Last.png";
+import users from "../assets/users.json";
+import Buttons from "../assets/Buttons.png";
+import up from "../assets/Up.png";
+import { useEffect, useRef, useState } from "react";
 type User = {
-    Name: string;
-    Phone: string;
+  Name: string;
+  Phone: string;
   Email: string;
   Scheduled: string;
   Status: string;
   Executed: string;
-}
+};
 
 type PageType = 0 | 1 | 2;
 
@@ -24,12 +24,12 @@ type MainBlockProps = {
   page: PageType;
 };
 
-//функция для прокрутки вверх: 
+//функция для прокрутки вверх:
 const scrollToTop = (): void => {
   window.scrollTo({
     top: 0,
     left: 0,
-    behavior: 'smooth'
+    behavior: "smooth",
   });
 };
 
@@ -51,63 +51,63 @@ const NumberSwitcher = ({
   goLast,
   goNext,
   goPrev,
-}: ToolbarProps) =>{
+}: ToolbarProps) => {
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setPeople(Number(e.target.value)); 
+    setPeople(Number(e.target.value));
   };
-    return(
-        <>
-        <div className = {style.toolbarNumber}>
-        <div className = {style.toolbar__controls}>
+  return (
+    <>
+      <div className={style.toolbarNumber}>
+        <div className={style.toolbar__controls}>
+          <button className={style.toolbar__refreshbutton}>
+            <img src={refresh} />
+            <div> Refresh </div>
+          </button>
 
-            <button className = {style.toolbar__refreshbutton}>
-                <img src = {refresh}/>
-              <div> Refresh </div>  
-                </button>
+          <div className={style.toolbar__buutonsSwitch}>
+            <button onClick={goFirst} className={style.toolbar__buttonChange}>
+              <img src={first} />
+            </button>
 
+            <button onClick={goPrev} className={style.toolbar__buttonChange}>
+              <img src={left} />
+            </button>
 
-<div className = {style.toolbar__buutonsSwitch}>      
-              <button onClick={goFirst} className = {style.toolbar__buttonChange}>
-                <img src = {first}/>
-              </button>
+            <div className={style.toolbar__selectWrapper}>
+              <select
+                className={style.toolbar__customselect}
+                value={people}
+                onChange={handleChange}
+              >
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+                <option value="40">40</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+              </select>
+            </div>
 
-                <button onClick={goPrev} className = {style.toolbar__buttonChange}>
-                <img src = {left}/>
-                </button>
+            <button onClick={goNext} className={style.toolbar__buttonChange}>
+              {" "}
+              <img src={right} />{" "}
+            </button>
+            <button onClick={goLast} className={style.toolbar__buttonChange}>
+              {" "}
+              <img src={last} />{" "}
+            </button>
+          </div>
 
-
-<div className={style.toolbar__selectWrapper}>
-  <select
-    className={style.toolbar__customselect}
-    value={people}
-    onChange={handleChange}
-  >
-    <option value="10">10</option>
-    <option value="20">20</option>
-    <option value="30">30</option>
-    <option value="40">40</option>
-    <option value="50">50</option>
-    <option value="100">100</option>
-  </select>
-</div>
-
-              <button onClick={goNext} className = {style.toolbar__buttonChange}>  <img src = {right}/> </button>
-              <button  onClick={goLast} className = {style.toolbar__buttonChange}>  <img src = {last}/> </button>
- </div>
-
-                  <div className = {style.toolbar__amount}>
-                <div className = {style.toolbar__blockWithNumber}>{people}</div>
-                <div> of </div>
-                <div> 100 </div>
-              </div>
-
+          <div className={style.toolbar__amount}>
+            <div className={style.toolbar__blockWithNumber}>{people}</div>
+            <div> of </div>
+            <div> 100 </div>
+          </div>
         </div>
-
-         </div>
-        </>
-    )
-}
-
+      </div>
+    </>
+  );
+};
 
 const Toolbar = ({
   people,
@@ -118,69 +118,72 @@ const Toolbar = ({
   goPrev,
 }: ToolbarProps) => {
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setPeople(Number(e.target.value)); 
+    setPeople(Number(e.target.value));
   };
-    return(
-        <>
-            <div className = {style.toolbar}>
-            <div className = {style.toolbar__search}>     
-            <div className = {style.toolbar__searchBlock}>
-            <img className = {style.toolbar__searchicon} src = {search}/>
-            <input className = {style.toolbar__searchinput} placeholder="Search"/>
-            </div>
-            <button className = {style.toolbar__searhcbutton}>Search</button>
-            </div>
-
-
-        <div className = {style.toolbar__controls}>
-
-            <button className = {style.toolbar__refreshbutton}>
-                <img src = {refresh}/>
-              <div> Refresh </div>  
-                </button>
-
-
-<div className = {style.toolbar__buutonsSwitch}>      
-              <button onClick={goFirst} className = {style.toolbar__buttonChange}>
-                <img src = {first}/>
-              </button>
-
-                <button onClick={goPrev} className = {style.toolbar__buttonChange}>
-                <img src = {left}/>
-                </button>
-
-
-<div className={style.toolbar__selectWrapper}>
-  <select
-    className={style.toolbar__customselect}
-    value={people}
-    onChange={handleChange}
-  >
-    <option value="10">10</option>
-    <option value="20">20</option>
-    <option value="30">30</option>
-    <option value="40">40</option>
-    <option value="50">50</option>
-    <option value="100">100</option>
-  </select>
-</div>
-
-              <button onClick={goNext} className = {style.toolbar__buttonChange}>  <img src = {right}/> </button>
-              <button  onClick={goLast} className = {style.toolbar__buttonChange}>  <img src = {last}/> </button>
- </div>
-
-                  <div className = {style.toolbar__amount}>
-                <div className = {style.toolbar__blockWithNumber}>{people}</div>
-                <div> of </div>
-                <div> 100 </div>
-              </div>
-
+  return (
+    <>
+      <div className={style.toolbar}>
+        <div className={style.toolbar__search}>
+          <div className={style.toolbar__searchBlock}>
+            <img className={style.toolbar__searchicon} src={search} />
+            <input
+              className={style.toolbar__searchinput}
+              placeholder="Search"
+            />
+          </div>
+          <button className={style.toolbar__searhcbutton}>Search</button>
         </div>
 
-         </div>
-        </>
-    )
-}
+        <div className={style.toolbar__controls}>
+          <button className={style.toolbar__refreshbutton}>
+            <img src={refresh} />
+            <div> Refresh </div>
+          </button>
+
+          <div className={style.toolbar__buutonsSwitch}>
+            <button onClick={goFirst} className={style.toolbar__buttonChange}>
+              <img src={first} />
+            </button>
+
+            <button onClick={goPrev} className={style.toolbar__buttonChange}>
+              <img src={left} />
+            </button>
+
+            <div className={style.toolbar__selectWrapper}>
+              <select
+                className={style.toolbar__customselect}
+                value={people}
+                onChange={handleChange}
+              >
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+                <option value="40">40</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+              </select>
+            </div>
+
+            <button onClick={goNext} className={style.toolbar__buttonChange}>
+              {" "}
+              <img src={right} />{" "}
+            </button>
+            <button onClick={goLast} className={style.toolbar__buttonChange}>
+              {" "}
+              <img src={last} />{" "}
+            </button>
+          </div>
+
+          <div className={style.toolbar__amount}>
+            <div className={style.toolbar__blockWithNumber}>{people}</div>
+            <div> of </div>
+            <div> 100 </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
 
 type UserBlockProps = {
   page: number;
@@ -190,7 +193,7 @@ type UserBlockProps = {
 const UserBlock = ({ page, pageSize }: UserBlockProps) => {
   const currentUsers = users.users.slice(
     page * pageSize,
-    page * pageSize + pageSize
+    page * pageSize + pageSize,
   );
 
   return (
@@ -208,7 +211,9 @@ const UserBlock = ({ page, pageSize }: UserBlockProps) => {
           <div className={style.usertable__cell}>{user.Phone}</div>
           <div className={style.usertable__cell}>{user.Email}</div>
           <div className={style.usertable__cell}>
-            <button className={style.usertable__button}>Cancel membership</button>
+            <button className={style.usertable__button}>
+              Cancel membership
+            </button>
           </div>
         </div>
       ))}
@@ -216,8 +221,15 @@ const UserBlock = ({ page, pageSize }: UserBlockProps) => {
   );
 };
 
-const UserBlockScheduled = ({ page, pageSize, showModal }: UserBlockProps & { showModal: () => void }) => {
-  const currentUsers = users.users.slice(page * pageSize, page * pageSize + pageSize);
+const UserBlockScheduled = ({
+  page,
+  pageSize,
+  showModal,
+}: UserBlockProps & { showModal: () => void }) => {
+  const currentUsers = users.users.slice(
+    page * pageSize,
+    page * pageSize + pageSize,
+  );
 
   return (
     <div className={style.usertable}>
@@ -236,7 +248,10 @@ const UserBlockScheduled = ({ page, pageSize, showModal }: UserBlockProps & { sh
           <div className={style.usertable__cell}>{user.Email}</div>
           <div className={style.usertable__cell}>{user.Scheduled}</div>
           <div className={style.usertable__cell}>
-            <button onClick={showModal} className={style.usertable__buttonAbort}>
+            <button
+              onClick={showModal}
+              className={style.usertable__buttonAbort}
+            >
               Abort
             </button>
           </div>
@@ -247,7 +262,10 @@ const UserBlockScheduled = ({ page, pageSize, showModal }: UserBlockProps & { sh
 };
 
 const UserBlockExecuted = ({ page, pageSize }: UserBlockProps) => {
-  const currentUsers = users.users.slice(page * pageSize, page * pageSize + pageSize);
+  const currentUsers = users.users.slice(
+    page * pageSize,
+    page * pageSize + pageSize,
+  );
 
   const getStatusClass = (status: string) => {
     const baseClass = style.usertable__cell__status__circle;
@@ -283,7 +301,6 @@ const UserBlockExecuted = ({ page, pageSize }: UserBlockProps) => {
   );
 };
 
-
 export const MainBlock: React.FC<MainBlockProps> = ({ page }) => {
   const [showButton, setShowButton] = useState<boolean>(false);
 
@@ -296,7 +313,8 @@ export const MainBlock: React.FC<MainBlockProps> = ({ page }) => {
 
   const goFirst = () => setCurrentPage(0);
   const goLast = () => setCurrentPage(totalPages - 1);
-  const goNext = () => setCurrentPage((prev) => Math.min(prev + 1, totalPages - 1));
+  const goNext = () =>
+    setCurrentPage((prev) => Math.min(prev + 1, totalPages - 1));
   const goPrev = () => setCurrentPage((prev) => Math.max(prev - 1, 0));
 
   // кнопка "вверх"
@@ -304,8 +322,8 @@ export const MainBlock: React.FC<MainBlockProps> = ({ page }) => {
     const handleScroll = () => {
       setShowButton(window.scrollY > 300);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const dialog = useRef<HTMLDialogElement>(null);
@@ -338,7 +356,8 @@ export const MainBlock: React.FC<MainBlockProps> = ({ page }) => {
             src={Buttons}
           />
           <div className={style.MainBlockConteiner__modalBlock__text}>
-            Are you sure you want to abort this Scheduled Membership Cancellation?
+            Are you sure you want to abort this Scheduled Membership
+            Cancellation?
           </div>
           <div className={style.MainBlockConteiner__buttonBlocks}>
             <button
@@ -347,7 +366,9 @@ export const MainBlock: React.FC<MainBlockProps> = ({ page }) => {
             >
               Cancel
             </button>
-            <button className={style.MainBlockConteiner__buttonAbort}>Abort</button>
+            <button className={style.MainBlockConteiner__buttonAbort}>
+              Abort
+            </button>
           </div>
         </div>
       </dialog>
@@ -368,8 +389,8 @@ export const MainBlock: React.FC<MainBlockProps> = ({ page }) => {
         </>
       ) : page === 1 ? (
         <>
-          <NumberSwitcher 
-           page={currentPage}
+          <NumberSwitcher
+            page={currentPage}
             people={pageSize}
             totalUsers={totalUsers}
             setPeople={setPageSize}
@@ -378,16 +399,16 @@ export const MainBlock: React.FC<MainBlockProps> = ({ page }) => {
             goNext={goNext}
             goPrev={goPrev}
           />
-      <UserBlockScheduled
-      page={currentPage}
-      pageSize={pageSize}
-      showModal={showModal}
-    />
+          <UserBlockScheduled
+            page={currentPage}
+            pageSize={pageSize}
+            showModal={showModal}
+          />
         </>
       ) : (
         <>
-          <NumberSwitcher 
-           page={currentPage}
+          <NumberSwitcher
+            page={currentPage}
             people={pageSize}
             totalUsers={totalUsers}
             setPeople={setPageSize}
@@ -396,7 +417,7 @@ export const MainBlock: React.FC<MainBlockProps> = ({ page }) => {
             goNext={goNext}
             goPrev={goPrev}
           />
-    <UserBlockExecuted page={currentPage} pageSize={pageSize} />
+          <UserBlockExecuted page={currentPage} pageSize={pageSize} />
         </>
       )}
 

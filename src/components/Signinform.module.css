@@ -8,13 +8,13 @@
   padding: 64px;
   gap: 32px;
   border-radius: 16px;
-  background: #FFFFFF;
+  background: #ffffff;
   margin-top: 40px;
 }
 
 .signin__formbutton {
   display: flex;
-  background: #A4D9B0;
+  background: #a4d9b0;
   width: 350px;
   height: 48px;
   opacity: 1;
@@ -23,7 +23,7 @@
   cursor: pointer;
   align-items: center;
   justify-content: center;
-  color: #FFFFFF;
+  color: #ffffff;
   font-family: Roboto;
   font-weight: 500;
   font-size: 16px;
@@ -31,8 +31,8 @@
   letter-spacing: 0.15px;
   border: none;
 }
-.signin__formbutton__active{
-    display: flex;
+.signin__formbutton__active {
+  display: flex;
   width: 350px;
   height: 48px;
   opacity: 1;
@@ -41,14 +41,14 @@
   cursor: pointer;
   align-items: center;
   justify-content: center;
-  color: #FFFFFF;
+  color: #ffffff;
   font-family: Roboto;
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
   letter-spacing: 0.15px;
   border: none;
-background-color: #1CA139;
+  background-color: #1ca139;
 }
 .signin__forminputblock {
   width: 320px;
@@ -58,14 +58,14 @@ background-color: #1CA139;
   display: flex;
   align-items: center;
   padding: 4px 16px 4px 12px;
-  gap: 12px; 
+  gap: 12px;
 }
 
 .signin__forminputicon {
   width: 20px;
   height: 20px;
   color: #636363;
-  flex-shrink: 0; 
+  flex-shrink: 0;
 }
 
 .signin__forminput {
@@ -79,8 +79,6 @@ background-color: #1CA139;
   color: #141414;
 }
 
-
-
 .signin__formtitle {
   font-family: Roboto;
   font-weight: 400;
@@ -93,37 +91,32 @@ background-color: #1CA139;
   color: transparent;
 }
 
-.signin__forminputBlock__errormessage{
-color:red;
+.signin__forminputBlock__errormessage {
+  color: red;
 }
 
-
-@media (max-width:680px){
+@media (max-width: 680px) {
   .signin__form {
-     width: 340px;
-}
+    width: 340px;
+  }
 }
 
-@media (max-width:580px){
+@media (max-width: 580px) {
   .signin__form {
-     width: 300px;
+    width: 300px;
+  }
 }
-}
-@media (max-width:480px){
+@media (max-width: 480px) {
   .signin__form {
-     width: 150px;
-}
-.signin__formbutton {
-
-  width: 230px;
-
-}
-.signin__formbutton__active{
-  width: 230px;
-
-}
-.signin__forminputblock {
-  width: 200px;
-
-}
+    width: 150px;
+  }
+  .signin__formbutton {
+    width: 230px;
+  }
+  .signin__formbutton__active {
+    width: 230px;
+  }
+  .signin__forminputblock {
+    width: 200px;
+  }
 }

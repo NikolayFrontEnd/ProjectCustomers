@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import { Header } from '../components/Header';
-import { MainBlock } from '../components/MainBlock';
-import style from './Main.module.css'
+import { useState } from "react";
+import { Header } from "../components/Header";
+import { MainBlock } from "../components/MainBlock";
+import style from "./Main.module.css";
 
 type PageType = 0 | 1 | 2;
 

@@ -1,20 +1,24 @@
-*{
+* {
   margin: 0;
 }
 .signIn {
-display:flex;
-justify-content: center;
-align-items: center;
-background: linear-gradient(107.99deg, #61BE75 0%, #4CB563 11.99%, #26A541 29.98%, #26A541 69.94%, #4CB563 87.93%, #61BE75 99.92%);
-height: 100vh;
-flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(
+    107.99deg,
+    #61be75 0%,
+    #4cb563 11.99%,
+    #26a541 29.98%,
+    #26a541 69.94%,
+    #4cb563 87.93%,
+    #61be75 99.92%
+  );
+  height: 100vh;
+  flex-direction: column;
 }
 
-.signin__logo{
-width: 320px;
-height: 146px;
-
+.signin__logo {
+  width: 320px;
+  height: 146px;
 }
-
-
-
