@@ -26,6 +26,34 @@ const scrollToTop = (): void => {
   });
 };
 
+const scrollup = (): void => {
+    window.scrollBy({
+      top: -60,
+      behavior: 'smooth'
+    });
+  };
+
+const scrollupUltra = (): void => {
+    window.scrollBy({
+      top: -240,
+      behavior: 'smooth'
+    });
+  };
+
+const scrollDown = (): void => {
+    window.scrollBy({
+      top: 60,
+      behavior: 'smooth'
+    });
+  };
+
+const scrollDownUltra = (): void => {
+    window.scrollBy({
+      top: 240,
+      behavior: 'smooth'
+    });
+  };
+
 const Toolbar = () =>{
     const [people,setPeople] = useState<number>(100);
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -52,11 +80,11 @@ const Toolbar = () =>{
 
 
 <div className = {style.toolbar__buutonsSwitch}>      
-              <button className = {style.toolbar__buttonChange}>
+              <button onClick={scrollDownUltra} className = {style.toolbar__buttonChange}>
                 <img src = {first}/>
               </button>
 
-                <button className = {style.toolbar__buttonChange}>
+                <button onClick = {scrollDown} className = {style.toolbar__buttonChange}>
                 <img src = {left}/>
                 </button>
 
@@ -76,8 +104,8 @@ const Toolbar = () =>{
   </select>
 </div>
 
-              <button className = {style.toolbar__buttonChange}>  <img src = {right}/> </button>
-              <button className = {style.toolbar__buttonChange}>  <img src = {last}/> </button>
+              <button onClick = {scrollup} className = {style.toolbar__buttonChange}>  <img src = {right}/> </button>
+              <button onClick = {scrollupUltra} className = {style.toolbar__buttonChange}>  <img src = {last}/> </button>
  </div>
 
                   <div className = {style.toolbar__amount}>
@@ -102,7 +130,7 @@ const NumberSwitcher = () =>{
         <div className = {style.toolbarNumber}>
         <div className = {style.toolbar__controls}>
         <div className = {style.toolbar__buutonsSwitch}>      
-              <button className = {style.toolbar__buttonChange}>
+              <button  className = {style.toolbar__buttonChange}>
                 <img src = {first}/>
               </button>
 
