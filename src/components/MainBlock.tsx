@@ -27,36 +27,42 @@ const scrollToTop = (): void => {
 };
 
 const scrollup = (): void => {
-    window.scrollBy({
-      top: -60,
-      behavior: 'smooth'
-    });
+
   };
 
 const scrollupUltra = (): void => {
-    window.scrollBy({
-      top: -240,
-      behavior: 'smooth'
-    });
+
   };
 
 const scrollDown = (): void => {
-    window.scrollBy({
-      top: 60,
-      behavior: 'smooth'
-    });
+
   };
 
 const scrollDownUltra = (): void => {
-    window.scrollBy({
-      top: 240,
-      behavior: 'smooth'
-    });
-  };
 
-const Toolbar = () =>{
-    const [people,setPeople] = useState<number>(100);
-  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  };
+type ToolbarProps = {
+  page: number;
+  people: number;
+  totalUsers: number;
+  setPeople: (value: number) => void;
+  goFirst: () => void;
+  goLast: () => void;
+  goNext: () => void;
+  goPrev: () => void;
+};
+const Toolbar = ({
+  page,
+  people,
+  totalUsers,
+  setPeople,
+  goFirst,
+  goLast,
+  goNext,
+  goPrev,
+}: ToolbarProps) => {
+/*     const [people,setPeople] = useState<number>(100);
+ */  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setPeople(Number(e.target.value)); 
   };
     return(
@@ -80,11 +86,11 @@ const Toolbar = () =>{
 
 
 <div className = {style.toolbar__buutonsSwitch}>      
-              <button onClick={scrollDownUltra} className = {style.toolbar__buttonChange}>
+              <button onClick={goFirst} className = {style.toolbar__buttonChange}>
                 <img src = {first}/>
               </button>
 
-                <button onClick = {scrollDown} className = {style.toolbar__buttonChange}>
+                <button onClick={goPrev} className = {style.toolbar__buttonChange}>
                 <img src = {left}/>
                 </button>
 
@@ -104,8 +110,8 @@ const Toolbar = () =>{
   </select>
 </div>
 
-              <button onClick = {scrollup} className = {style.toolbar__buttonChange}>  <img src = {right}/> </button>
-              <button onClick = {scrollupUltra} className = {style.toolbar__buttonChange}>  <img src = {last}/> </button>
+              <button onClick={goNext} className = {style.toolbar__buttonChange}>  <img src = {right}/> </button>
+              <button  onClick={goLast} className = {style.toolbar__buttonChange}>  <img src = {last}/> </button>
  </div>
 
                   <div className = {style.toolbar__amount}>
@@ -171,30 +177,40 @@ const NumberSwitcher = () =>{
     )
 }
 
-const UserBlock = () =>{
-    return (
-        <>
-<div className={style['usertable']}>
-      <div className={style['usertable__header']}>
-        <div className={style['usertable__header-cell']}>Name</div>
-        <div className={style['usertable__header-cell']}>Phone</div>
-        <div className={style['usertable__header-cell']}>Email</div>
-        <div className={style['usertable__header-cell']}>Actions</div>
+type UserBlockProps = {
+  page: number;
+  pageSize: number;
+};
+
+const UserBlock = ({ page, pageSize }: UserBlockProps) => {
+  const totalUsers = users.users.length;
+  const currentUsers = users.users.slice(
+    page * pageSize,
+    page * pageSize + pageSize
+  );
+
+  return (
+    <div className={style["usertable"]}>
+      <div className={style["usertable__header"]}>
+        <div className={style["usertable__header-cell"]}>Name</div>
+        <div className={style["usertable__header-cell"]}>Phone</div>
+        <div className={style["usertable__header-cell"]}>Email</div>
+        <div className={style["usertable__header-cell"]}>Actions</div>
       </div>
-      {users.users.map((user:User, i:number) => (
-        <div key={i} className={style['usertable__user-block']}>
-          <div className={style['usertable__cell']}>{user.Name}</div>
-          <div className={style['usertable__cell']}>{user.Phone}</div>
-          <div className={style['usertable__cell']}>{user.Email}</div>
-          <div className={style['usertable__cell']}>
-            <button className={style['usertable__button']}>Cancel membership</button>
+
+      {currentUsers.map((user: User, i: number) => (
+        <div key={i} className={style["usertable__user-block"]}>
+          <div className={style["usertable__cell"]}>{user.Name}</div>
+          <div className={style["usertable__cell"]}>{user.Phone}</div>
+          <div className={style["usertable__cell"]}>{user.Email}</div>
+          <div className={style["usertable__cell"]}>
+            <button className={style["usertable__button"]}>Cancel membership</button>
           </div>
         </div>
       ))}
     </div>
-        </>
-    )
-}
+  );
+};
 
 const UserBlockScheduled = ({ showModal }: { showModal: () => void }) =>{
     return (
@@ -269,77 +285,107 @@ type MainBlockProps = {
 };
 
 export const MainBlock: React.FC<MainBlockProps> = ({ page }) => {
-    const [showButton, setShowButton] = useState<boolean>(false);
-    //тут я отображаю кнопку, как только мы немного прокрутили вемз больше чем на 300 px
+  const [showButton, setShowButton] = useState<boolean>(false);
+
+  // управляем пагинацией здесь
+  const [currentPage, setCurrentPage] = useState(0);
+  const [pageSize, setPageSize] = useState(10);
+
+  const totalUsers = users.users.length;
+  const totalPages = Math.ceil(totalUsers / pageSize);
+
+  const goFirst = () => setCurrentPage(0);
+  const goLast = () => setCurrentPage(totalPages - 1);
+  const goNext = () => setCurrentPage((prev) => Math.min(prev + 1, totalPages - 1));
+  const goPrev = () => setCurrentPage((prev) => Math.max(prev - 1, 0));
+
+  // кнопка "вверх"
   useEffect(() => {
     const handleScroll = () => {
       setShowButton(window.scrollY > 300);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [])
+  }, []);
 
   const dialog = useRef<HTMLDialogElement>(null);
-console.log(dialog.current);
+
   const showModal = () => {
-    if (dialog.current) {
-      dialog.current.showModal();
-    }
+    dialog.current?.showModal();
   };
 
   const closeModal = () => {
-    if (dialog.current) {
-      dialog.current.close();
-    }
+    dialog.current?.close();
   };
 
-    const handleDialogClick = (e: React.MouseEvent<HTMLDialogElement>) => {
+  const handleDialogClick = (e: React.MouseEvent<HTMLDialogElement>) => {
     if (e.target === e.currentTarget) {
       closeModal();
     }
   };
-  return (
-  
-    <div className={style.MainBlockConteiner}>
-<dialog ref = {dialog}
-onClick={handleDialogClick}
-className={style.MainBlockConteiner__modal}
->
-  <div className = {style.MainBlockConteiner__modalBlock}> 
-    <img className = {style.MainBlockConteiner__modalBlock__img} onClick = {closeModal} src = {Buttons}/>
-    <div className = {style.MainBlockConteiner__modalBlock__text}>Are you sure you want to abort this Scheduled Membership Cancellation?</div>
-    <div className={style.MainBlockConteiner__buttonBlocks}>
-     <button onClick = {closeModal} className = {style.MainBlockConteiner__buttonCancel}>Cancel</button>
-     <button className = {style.MainBlockConteiner__buttonAbort}>Abort</button>
-    </div>
-  </div>
 
-</dialog>
+  return (
+    <div className={style.MainBlockConteiner}>
+      <dialog
+        ref={dialog}
+        onClick={handleDialogClick}
+        className={style.MainBlockConteiner__modal}
+      >
+        <div className={style.MainBlockConteiner__modalBlock}>
+          <img
+            className={style.MainBlockConteiner__modalBlock__img}
+            onClick={closeModal}
+            src={Buttons}
+          />
+          <div className={style.MainBlockConteiner__modalBlock__text}>
+            Are you sure you want to abort this Scheduled Membership Cancellation?
+          </div>
+          <div className={style.MainBlockConteiner__buttonBlocks}>
+            <button
+              onClick={closeModal}
+              className={style.MainBlockConteiner__buttonCancel}
+            >
+              Cancel
+            </button>
+            <button className={style.MainBlockConteiner__buttonAbort}>Abort</button>
+          </div>
+        </div>
+      </dialog>
+
       {page === 0 ? (
-        <>   
-       <Toolbar />
-        <UserBlock />
-         </>
+        <>
+          <Toolbar
+            page={currentPage}
+            people={pageSize}
+            totalUsers={totalUsers}
+            setPeople={setPageSize}
+            goFirst={goFirst}
+            goLast={goLast}
+            goNext={goNext}
+            goPrev={goPrev}
+          />
+          <UserBlock page={currentPage} pageSize={pageSize} />
+        </>
       ) : page === 1 ? (
-        <>  
-    <NumberSwitcher />
-        <UserBlockScheduled showModal={showModal}/>
+        <>
+          <NumberSwitcher />
+          <UserBlockScheduled showModal={showModal} />
         </>
       ) : (
-        <>  
-    <NumberSwitcher />
-        <UserBlockExecuted />
+        <>
+          <NumberSwitcher />
+          <UserBlockExecuted />
         </>
       )}
-      {
-        showButton &&         
-      <div onClick = {scrollToTop} className = {style.MainBlockConteiner__circleArrow}>
-       <img src = {up}/>
-      </div>
-      }
 
+      {showButton && (
+        <div
+          onClick={scrollToTop}
+          className={style.MainBlockConteiner__circleArrow}
+        >
+          <img src={up} />
+        </div>
+      )}
     </div>
-
-
   );
 };
