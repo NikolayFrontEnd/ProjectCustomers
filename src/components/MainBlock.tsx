@@ -7,7 +7,8 @@ import right from '../assets/Arrow_right.png';
 import last from '../assets/Last.png';
 import users from '../assets/users.json';
 import Buttons from '../assets/Buttons.png';
-import { useRef, useState } from 'react';
+import up from '../assets/Up.png';
+import { useEffect, useRef, useState } from 'react';
 type User = {
     Name: string;
     Phone: string;
@@ -16,6 +17,15 @@ type User = {
   Status: string;
   Executed: string;
 }
+//функция для прокрутки вверх: 
+const scrollToTop = (): void => {
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: 'smooth'
+  });
+};
+
 const Toolbar = () =>{
     const [people,setPeople] = useState<number>(100);
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -231,6 +241,16 @@ type MainBlockProps = {
 };
 
 export const MainBlock: React.FC<MainBlockProps> = ({ page }) => {
+    const [showButton, setShowButton] = useState<boolean>(false);
+    //тут я отображаю кнопку, как только мы немного прокрутили вемз больше чем на 300 px
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowButton(window.scrollY > 300);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [])
+
   const dialog = useRef<HTMLDialogElement>(null);
 console.log(dialog.current);
   const showModal = () => {
@@ -251,6 +271,7 @@ console.log(dialog.current);
     }
   };
   return (
+  
     <div className={style.MainBlockConteiner}>
 <dialog ref = {dialog}
 onClick={handleDialogClick}
@@ -282,6 +303,15 @@ className={style.MainBlockConteiner__modal}
         <UserBlockExecuted />
         </>
       )}
+      {
+        showButton &&         
+      <div onClick = {scrollToTop} className = {style.MainBlockConteiner__circleArrow}>
+       <img src = {up}/>
+      </div>
+      }
+
     </div>
+
+
   );
 };

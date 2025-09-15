@@ -348,6 +348,22 @@ cursor: pointer;
   right: 10px;
 }
 
+.MainBlockConteiner__circleArrow{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #E5831D;
+  width: 56px;
+  height: 56px;
+  padding: 12px;
+  gap: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  position: fixed;
+bottom: 20px; 
+  right: 20px
+}
+
 @media(max-width:1269px){
 .toolbar__searchBlock{
   width:300px;
