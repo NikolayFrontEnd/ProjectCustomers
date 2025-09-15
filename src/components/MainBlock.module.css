@@ -169,7 +169,7 @@ gap: 10px;
   margin-bottom: 16px;
 }
 
-.usertable__header-cell {
+.usertable__headercell {
   width: 456px;
   text-align: left;
   font-family: Roboto, sans-serif;
@@ -181,7 +181,7 @@ gap: 10px;
   
 }
 
-.usertable__user-block {
+.usertable__userblock {
   display: flex;
   justify-content: space-around;
   align-items: center;

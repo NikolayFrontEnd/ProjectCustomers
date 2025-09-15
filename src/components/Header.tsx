@@ -1,6 +1,5 @@
 import style from './Header.module.css';
 import logo from '../assets/LogoGreen.png';
-import { useState } from 'react';
 type PageType = 0 | 1 | 2;
 type HeaderProps = {
   page: PageType;

@@ -17,6 +17,13 @@ type User = {
   Status: string;
   Executed: string;
 }
+
+type PageType = 0 | 1 | 2;
+
+type MainBlockProps = {
+  page: PageType;
+};
+
 //функция для прокрутки вверх: 
 const scrollToTop = (): void => {
   window.scrollTo({
@@ -187,21 +194,21 @@ const UserBlock = ({ page, pageSize }: UserBlockProps) => {
   );
 
   return (
-    <div className={style["usertable"]}>
-      <div className={style["usertable__header"]}>
-        <div className={style["usertable__header-cell"]}>Name</div>
-        <div className={style["usertable__header-cell"]}>Phone</div>
-        <div className={style["usertable__header-cell"]}>Email</div>
-        <div className={style["usertable__header-cell"]}>Actions</div>
+    <div className={style.usertable}>
+      <div className={style.usertable__header}>
+        <div className={style.usertable__headercell}>Name</div>
+        <div className={style.usertable__headercell}>Phone</div>
+        <div className={style.usertable__headercell}>Email</div>
+        <div className={style.usertable__headercell}>Actions</div>
       </div>
 
       {currentUsers.map((user: User, i: number) => (
-        <div key={i} className={style["usertable__user-block"]}>
-          <div className={style["usertable__cell"]}>{user.Name}</div>
-          <div className={style["usertable__cell"]}>{user.Phone}</div>
-          <div className={style["usertable__cell"]}>{user.Email}</div>
-          <div className={style["usertable__cell"]}>
-            <button className={style["usertable__button"]}>Cancel membership</button>
+        <div key={i} className={style.usertable__userblock}>
+          <div className={style.usertable__cell}>{user.Name}</div>
+          <div className={style.usertable__cell}>{user.Phone}</div>
+          <div className={style.usertable__cell}>{user.Email}</div>
+          <div className={style.usertable__cell}>
+            <button className={style.usertable__button}>Cancel membership</button>
           </div>
         </div>
       ))}
@@ -213,23 +220,23 @@ const UserBlockScheduled = ({ page, pageSize, showModal }: UserBlockProps & { sh
   const currentUsers = users.users.slice(page * pageSize, page * pageSize + pageSize);
 
   return (
-    <div className={style['usertable']}>
-      <div className={style['usertable__header']}>
-        <div className={style['usertable__header-cell']}>Name</div>
-        <div className={style['usertable__header-cell']}>Phone</div>
-        <div className={style['usertable__header-cell']}>Email</div>
-        <div className={style['usertable__header-cell']}>Scheduled</div>
-        <div className={style['usertable__header-cell']}>Actions</div>
+    <div className={style.usertable}>
+      <div className={style.usertable__header}>
+        <div className={style.usertable__headercell}>Name</div>
+        <div className={style.usertable__headercell}>Phone</div>
+        <div className={style.usertable__headercell}>Email</div>
+        <div className={style.usertable__headercell}>Scheduled</div>
+        <div className={style.usertable__headercell}>Actions</div>
       </div>
 
       {currentUsers.map((user: User, i: number) => (
-        <div key={i} className={style['usertable__user-block']}>
-          <div className={style['usertable__cell']}>{user.Name}</div>
-          <div className={style['usertable__cell']}>{user.Phone}</div>
-          <div className={style['usertable__cell']}>{user.Email}</div>
-          <div className={style['usertable__cell']}>{user.Scheduled}</div>
-          <div className={style['usertable__cell']}>
-            <button onClick={showModal} className={style['usertable__buttonAbort']}>
+        <div key={i} className={style.usertable__userblock}>
+          <div className={style.usertable__cell}>{user.Name}</div>
+          <div className={style.usertable__cell}>{user.Phone}</div>
+          <div className={style.usertable__cell}>{user.Email}</div>
+          <div className={style.usertable__cell}>{user.Scheduled}</div>
+          <div className={style.usertable__cell}>
+            <button onClick={showModal} className={style.usertable__buttonAbort}>
               Abort
             </button>
           </div>
@@ -252,22 +259,22 @@ const UserBlockExecuted = ({ page, pageSize }: UserBlockProps) => {
   };
 
   return (
-    <div className={style['usertable']}>
-      <div className={style['usertable__header']}>
-        <div className={style['usertable__header-cell']}>Name</div>
-        <div className={style['usertable__header-cell']}>Phone</div>
-        <div className={style['usertable__header-cell']}>Email</div>
-        <div className={style['usertable__header-cell']}>Executed</div>
-        <div className={style['usertable__header-cell']}>Status</div>
+    <div className={style.usertable}>
+      <div className={style.usertable__header}>
+        <div className={style.usertable__headercell}>Name</div>
+        <div className={style.usertable__headercell}>Phone</div>
+        <div className={style.usertable__headercell}>Email</div>
+        <div className={style.usertable__headercell}>Executed</div>
+        <div className={style.usertable__headercell}>Status</div>
       </div>
 
       {currentUsers.map((user: User, i: number) => (
-        <div key={i} className={style['usertable__user-block']}>
-          <div className={style['usertable__cell']}>{user.Name}</div>
-          <div className={style['usertable__cell']}>{user.Phone}</div>
-          <div className={style['usertable__cell']}>{user.Email}</div>
-          <div className={style['usertable__cell']}>{user.Executed}</div>
-          <div className={style['usertable__cell__status']}>
+        <div key={i} className={style.usertable__userblock}>
+          <div className={style.usertable__cell}>{user.Name}</div>
+          <div className={style.usertable__cell}>{user.Phone}</div>
+          <div className={style.usertable__cell}>{user.Email}</div>
+          <div className={style.usertable__cell}>{user.Executed}</div>
+          <div className={style.usertable__cell__status}>
             <div className={getStatusClass(user.Status)}>{user.Status}</div>
           </div>
         </div>
@@ -276,11 +283,6 @@ const UserBlockExecuted = ({ page, pageSize }: UserBlockProps) => {
   );
 };
 
-type PageType = 0 | 1 | 2;
-
-type MainBlockProps = {
-  page: PageType;
-};
 
 export const MainBlock: React.FC<MainBlockProps> = ({ page }) => {
   const [showButton, setShowButton] = useState<boolean>(false);
