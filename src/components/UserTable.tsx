@@ -1,5 +1,5 @@
 import React from "react";
-import style from "../../styles/MainBlock.module.css";
+import style from "./MainBlock.module.css";
 import type { User } from "../types/User";
 import { UserTableHeader } from "./UserTableHeader";
 import { UserTableRow } from "./UserTableRow";
@@ -13,24 +13,24 @@ type UserTableProps = {
   showStatus?: boolean;
 };
 
-export const UserTable = ({ 
-  users, 
-  columns, 
-  renderActions, 
-  showScheduled = false, 
-  showExecuted = false, 
-  showStatus = false 
-}:UserTableProps) => (
+export const UserTable = ({
+  users,
+  columns,
+  renderActions,
+  showScheduled = false,
+  showExecuted = false,
+  showStatus = false,
+}: UserTableProps) => (
   <div className={style.usertable}>
     <UserTableHeader columns={columns} />
     {users.map((user, i) => (
-      <UserTableRow 
-        key={i} 
-        user={user} 
-        renderActions={renderActions} 
-        showScheduled={showScheduled} 
-        showExecuted={showExecuted} 
-        showStatus={showStatus} 
+      <UserTableRow
+        key={i}
+        user={user}
+        renderActions={renderActions}
+        showScheduled={showScheduled}
+        showExecuted={showExecuted}
+        showStatus={showStatus}
       />
     ))}
   </div>

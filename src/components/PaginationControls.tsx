@@ -1,8 +1,8 @@
-import style from "../../styles/MainBlock.module.css";
-import firstIcon from "../../assets/First.png";
-import leftIcon from "../../assets/Arrow_left.png";
-import rightIcon from "../../assets/Arrow_right.png";
-import lastIcon from "../../assets/Last.png";
+import style from "./MainBlock.module.css";
+import firstIcon from "../assets//First.png";
+import leftIcon from "../assets/Arrow_left.png";
+import rightIcon from "../assets/Arrow_right.png";
+import lastIcon from "../assets/Last.png";
 
 type PaginationControlsProps = {
   onFirst: () => void;
@@ -11,24 +11,24 @@ type PaginationControlsProps = {
   onLast: () => void;
 };
 
-export const PaginationControls = ({ 
-  onFirst, 
-  onPrev, 
-  onNext, 
-  onLast 
-}:PaginationControlsProps) => (
+export const PaginationControls = ({
+  onFirst,
+  onPrev,
+  onNext,
+  onLast,
+}: PaginationControlsProps) => (
   <div className={style.toolbar__buutonsSwitch}>
     <button onClick={onFirst} className={style.toolbar__buttonChange}>
-      <img src={firstIcon} alt="First" />
+      <img src={firstIcon} />
     </button>
     <button onClick={onPrev} className={style.toolbar__buttonChange}>
-      <img src={leftIcon} alt="Previous" />
+      <img src={leftIcon} />
     </button>
     <button onClick={onNext} className={style.toolbar__buttonChange}>
-      <img src={rightIcon} alt="Next" />
+      <img src={rightIcon} />
     </button>
     <button onClick={onLast} className={style.toolbar__buttonChange}>
-      <img src={lastIcon} alt="Last" />
+      <img src={lastIcon} />
     </button>
   </div>
 );

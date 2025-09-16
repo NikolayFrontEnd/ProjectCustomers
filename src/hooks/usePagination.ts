@@ -7,8 +7,18 @@ export const usePagination = (totalItems: number, initialPageSize = 10) => {
 
   const goFirst = () => setCurrentPage(0);
   const goLast = () => setCurrentPage(totalPages - 1);
-  const goNext = () => setCurrentPage(prev => Math.min(prev + 1, totalPages - 1));
-  const goPrev = () => setCurrentPage(prev => Math.max(prev - 1, 0));
+  const goNext = () =>
+  setCurrentPage((prev) => Math.min(prev + 1, totalPages - 1));
+  const goPrev = () => setCurrentPage((prev) => Math.max(prev - 1, 0));
 
-  return { currentPage, pageSize, totalPages, setPageSize, goFirst, goLast, goNext, goPrev };
+  return {
+    currentPage,
+    pageSize,
+    totalPages,
+    setPageSize,
+    goFirst,
+    goLast,
+    goNext,
+    goPrev,
+  };
 };

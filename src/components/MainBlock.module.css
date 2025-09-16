@@ -4,18 +4,21 @@
   border-radius: 16px;
   padding: 10px;
 }
+
 .toolbar {
   display: flex;
   justify-content: space-between;
   margin-top: 10px;
   margin-bottom: 20px;
 }
+
 .toolbarNumber {
   display: flex;
   justify-content: flex-end;
   margin-top: 10px;
   margin-bottom: 20px;
 }
+
 .toolbar__search {
   display: flex;
 }
@@ -44,6 +47,7 @@
   width: 100%;
   cursor: pointer;
 }
+
 .toolbar__searchinput:focus::placeholder {
   opacity: 0;
 }

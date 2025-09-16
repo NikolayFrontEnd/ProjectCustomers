@@ -1,10 +1,10 @@
-import style from "../../styles/MainBlock.module.css";
+import style from "./MainBlock.module.css";
 
-type UserTableHeaderProps = { 
-  columns: string[]; 
+type UserTableHeaderProps = {
+  columns: string[];
 };
 
-export const UserTableHeader = ({ columns }:UserTableHeaderProps) => (
+export const UserTableHeader = ({ columns }: UserTableHeaderProps) => (
   <div className={style.usertable__header}>
     {columns.map((col, i) => (
       <div key={i} className={style.usertable__headercell}>
