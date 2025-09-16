@@ -357,6 +357,10 @@
   right: 20px;
 }
 
+.toolbar__refreshText{
+margin-left: 5px;
+}
+
 @media (max-width: 1269px) {
   .toolbar__searchBlock {
     width: 300px;

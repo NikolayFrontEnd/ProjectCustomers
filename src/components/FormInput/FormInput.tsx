@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import style from "./FormInput.module.css";
 
 interface FormInputProps {
@@ -5,7 +6,7 @@ interface FormInputProps {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder: string;
   type?: string;
-  icon?: string;
+icon?: ReactNode;
   onFocus?: () => void;
   onBlur?: () => void;
 }
@@ -33,7 +34,7 @@ if (onBlur) {
 
   return (
     <div className={style.signin__forminputblock}>
-      {icon && <img src={icon} className={style.signin__forminputicon} />}
+     {icon && <div className={style.signin__forminputicon}>{icon}</div>}
       <input
         type={type}
         value={value}

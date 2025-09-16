@@ -1,10 +1,10 @@
 import style from "./Signinform.module.css";
-import lock from "../../assets/Lock.png";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../ButtonForm/Button";
 import FormInput from "../FormInput/FormInput";
 import { ErrorMessage } from "../Error/ErrorMessage";
+import LockIcon from "../Icons/LockIcon";
 export const SigninForm = () => {
   const navigate = useNavigate();
   const [isFocused, setIsFocused] = useState(false);
@@ -31,7 +31,7 @@ export const SigninForm = () => {
         onChange={(e) => setPassword(e.target.value)}
         placeholder="Password"
         type="password"
-        icon={lock}
+         icon={<LockIcon/>} 
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
       />
@@ -47,6 +47,7 @@ export const SigninForm = () => {
       <ErrorMessage message="Wrong password or email" visible={error} />
 
       <Button text="Sign in" type="submit" activeBtn={isFocused} />
+
     </form>
   );
 };
