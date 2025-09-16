@@ -1,8 +1,8 @@
 import style from "./MainBlock.module.css";
-import firstIcon from "../assets//First.png";
-import leftIcon from "../assets/Arrow_left.png";
-import rightIcon from "../assets/Arrow_right.png";
-import lastIcon from "../assets/Last.png";
+import firstIcon from "../../assets//First.png";
+import leftIcon from "../../assets/Arrow_left.png";
+import rightIcon from "../../assets/Arrow_right.png";
+import lastIcon from "../../assets/Last.png";
 
 type PaginationControlsProps = {
   onFirst: () => void;

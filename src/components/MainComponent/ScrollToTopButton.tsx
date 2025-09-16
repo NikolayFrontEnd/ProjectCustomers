@@ -1,5 +1,5 @@
 import style from "./MainBlock.module.css";
-import upIcon from "../assets/Up.png";
+import upIcon from "../../assets/Up.png";
 
 type ScrollToTopButtonProps = {
   visible: boolean;

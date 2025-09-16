@@ -1,5 +1,5 @@
 import style from "./MainBlock.module.css";
-import searchIcon from "../assets/Search.png";
+import searchIcon from "../../assets/Search.png";
 
 export const SearchBar = () => (
   <div className={style.toolbar__search}>

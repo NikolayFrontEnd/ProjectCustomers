@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Header } from "../components/Header";
-import { MainBlock } from "../components/MainBlock";
+import { Header } from "../components/Header/Header";
+import { MainBlock } from "../components/MainComponent/MainBlock";
 import style from "./Main.module.css";
 
 type PageType = 0 | 1 | 2;

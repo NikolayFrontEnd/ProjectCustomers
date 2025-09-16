@@ -1,6 +1,6 @@
 import React from "react";
 import style from "./MainBlock.module.css";
-import type { User } from "../types/User";
+import type { User } from "../../types/User";
 import { UserTableHeader } from "./UserTableHeader";
 import { UserTableRow } from "./UserTableRow";
 

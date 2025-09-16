@@ -1,10 +1,10 @@
 import style from "./Signinform.module.css";
-import lock from "../assets/Lock.png";
+import lock from "../../assets/Lock.png";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Button from "./Button";
-import FormInput from "./FormInput";
-import { ErrorMessage } from "./ErrorMessage";
+import Button from "../ButtonForm/Button";
+import FormInput from "../FormInput/FormInput";
+import { ErrorMessage } from "../Error/ErrorMessage";
 export const SigninForm = () => {
   const navigate = useNavigate();
   const [isFocused, setIsFocused] = useState(false);

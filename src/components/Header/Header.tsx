@@ -1,5 +1,5 @@
 import style from "./Header.module.css";
-import logo from "../assets/LogoGreen.png";
+import logo from "../../assets/LogoGreen.png";
 type PageType = 0 | 1 | 2;
 type HeaderProps = {
   page: PageType;

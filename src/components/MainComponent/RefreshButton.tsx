@@ -1,5 +1,5 @@
 import style from "./MainBlock.module.css";
-import refreshIcon from "../assets/Refresh.png";
+import refreshIcon from "../../assets/Refresh.png";
 
 export const RefreshButton = () => (
   <button className={style.toolbar__refreshbutton}>

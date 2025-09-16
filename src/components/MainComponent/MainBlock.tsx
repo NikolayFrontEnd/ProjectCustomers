@@ -1,9 +1,9 @@
-import users from "../assets/users.json";
+import users from "../../assets/users.json";
 import { useState } from "react";
-import type { PageType } from "../types/User";
+import type { PageType } from "../../types/User";
 import style from "./MainBlock.module.css";
-import { useScrollToTop } from "../hooks/useScrollToTop";
-import { usePagination } from "../hooks/usePagination";
+import { useScrollToTop } from "../../hooks/useScrollToTop";
+import { usePagination } from "../../hooks/usePagination";
 import { ConfirmationModal } from "./ConfirmationModal";
 import { Toolbar } from "./Toolbar";
 import { UserTable } from "./UserTable";
