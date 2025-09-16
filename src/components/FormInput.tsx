@@ -20,11 +20,15 @@ export default function FormInput({
   onBlur,
 }: FormInputProps) {
   const handleFocus = () => {
-    onFocus && onFocus();
+ if (onFocus) {
+      onFocus();
+    }
   };
 
   const handleBlur = () => {
-    onBlur && onBlur();
+if (onBlur) {
+      onBlur();
+    }
   };
 
   return (
