@@ -31,7 +31,7 @@ export const SigninForm = () => {
         onChange={(e) => setPassword(e.target.value)}
         placeholder="Password"
         type="password"
-         icon={<LockIcon/>} 
+        icon={<LockIcon />}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
       />
@@ -47,7 +47,6 @@ export const SigninForm = () => {
       <ErrorMessage message="Wrong password or email" visible={error} />
 
       <Button text="Sign in" type="submit" activeBtn={isFocused} />
-
     </form>
   );
 };

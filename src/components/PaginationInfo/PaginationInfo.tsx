@@ -1,4 +1,4 @@
-import style from "./MainBlock.module.css";
+import style from "../MainComponent/MainBlock.module.css";
 
 type PaginationInfoProps = {
   current: number;

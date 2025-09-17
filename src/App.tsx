@@ -1,14 +1,13 @@
-import { Routes, Route } from "react-router-dom";
-import Main from "./pages/Main";
-import { SignIn } from "./pages/SignIn";
+import { BrowserRouter } from "react-router-dom";
+
+import AppRouter from "./AppRouter";
 
 function App() {
   return (
     <>
-      <Routes>
-        <Route path="/" element={<SignIn />} />
-        <Route path="/main" element={<Main />} />
-      </Routes>
+      <BrowserRouter>
+        <AppRouter />
+      </BrowserRouter>
     </>
   );
 }

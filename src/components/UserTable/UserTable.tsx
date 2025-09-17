@@ -1,8 +1,8 @@
 import React from "react";
-import style from "./MainBlock.module.css";
+import style from "../MainComponent/MainBlock.module.css";
 import type { User } from "../../types/User";
-import { UserTableHeader } from "./UserTableHeader";
-import { UserTableRow } from "./UserTableRow";
+import { UserTableHeader } from "../UserTableHeader/UserTableHeader";
+import { UserTableRow } from "../UserTableRow/UserTableRow";
 
 type UserTableProps = {
   users: User[];

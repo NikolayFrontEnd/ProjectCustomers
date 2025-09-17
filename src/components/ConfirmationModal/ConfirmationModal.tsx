@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from "react";
-import style from "./MainBlock.module.css";
+import style from "../MainComponent/MainBlock.module.css";
 import Buttons from "../../assets/Buttons.png";
 
 type ConfirmationModalProps = {

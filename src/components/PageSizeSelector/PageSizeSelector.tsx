@@ -1,4 +1,4 @@
-import style from "./MainBlock.module.css";
+import style from "../MainComponent/MainBlock.module.css";
 
 type PageSizeSelectorProps = {
   value: number;
@@ -10,7 +10,7 @@ export const PageSizeSelector = ({
   onChange,
 }: PageSizeSelectorProps) => (
   <div className={style.toolbar__selectWrapper}>
-<select
+    <select
       className={style.toolbar__customselect}
       value={value}
       onChange={(e) => onChange(Number(e.target.value))}

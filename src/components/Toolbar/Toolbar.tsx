@@ -1,9 +1,9 @@
-import style from "./MainBlock.module.css";
-import { SearchBar } from "./SearchBar";
-import { RefreshButton } from "./RefreshButton";
-import { PaginationControls } from "./PaginationControls";
-import { PageSizeSelector } from "./PageSizeSelector";
-import { PaginationInfo } from "./PaginationInfo";
+import style from "../MainComponent/MainBlock.module.css";
+import { PageSizeSelector } from "../PageSizeSelector/PageSizeSelector";
+import { PaginationControls } from "../PaginationControls/PaginationControls";
+import { PaginationInfo } from "../PaginationInfo/PaginationInfo";
+import { RefreshButton } from "../RefreshButton/RefreshButton";
+import { SearchBar } from "../SearchBar/SearchBar";
 
 type ToolbarProps = {
   pageSize: number;

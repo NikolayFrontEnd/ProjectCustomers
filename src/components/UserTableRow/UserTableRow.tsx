@@ -1,5 +1,5 @@
-import style from "./MainBlock.module.css";
-import type { User } from "../types/User";
+import style from "../MainComponent/MainBlock.module.css";
+import type { User } from "../../types/User";
 
 type UserTableRowProps = {
   user: User;

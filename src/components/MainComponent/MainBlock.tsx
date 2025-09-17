@@ -4,10 +4,10 @@ import type { PageType } from "../../types/User";
 import style from "./MainBlock.module.css";
 import { useScrollToTop } from "../../hooks/useScrollToTop";
 import { usePagination } from "../../hooks/usePagination";
-import { ConfirmationModal } from "./ConfirmationModal";
-import { Toolbar } from "./Toolbar";
-import { UserTable } from "./UserTable";
-import { ScrollToTopButton } from "./ScrollToTopButton";
+import { ConfirmationModal } from "../ConfirmationModal/ConfirmationModal";
+import { UserTable } from "../UserTable/UserTable";
+import { ScrollToTopButton } from "../ScrollToTopButton/ScrollToTopButton";
+import { Toolbar } from "../Toolbar/Toolbar";
 type MainBlockProps = {
   page: PageType;
 };

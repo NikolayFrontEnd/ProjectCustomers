@@ -1,5 +1,4 @@
-import style from "./MainBlock.module.css";
-import lastIcon from "../../assets/Last.png";
+import style from "../MainComponent/MainBlock.module.css";
 import FirstIcon from "../Icons/FirstIcon";
 import ArrowLeftIcon from "../Icons/ArrowLeftIcon";
 import ArrowRightIcon from "../Icons/ArrowRightIcon";
@@ -20,16 +19,16 @@ export const PaginationControls = ({
 }: PaginationControlsProps) => (
   <div className={style.toolbar__buutonsSwitch}>
     <button onClick={onFirst} className={style.toolbar__buttonChange}>
-<FirstIcon/>
+      <FirstIcon />
     </button>
     <button onClick={onPrev} className={style.toolbar__buttonChange}>
-<ArrowLeftIcon/>
+      <ArrowLeftIcon />
     </button>
     <button onClick={onNext} className={style.toolbar__buttonChange}>
-<ArrowRightIcon/>
+      <ArrowRightIcon />
     </button>
     <button onClick={onLast} className={style.toolbar__buttonChange}>
-  <LastIcon/>
+      <LastIcon />
     </button>
   </div>
 );

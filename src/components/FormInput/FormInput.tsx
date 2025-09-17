@@ -6,7 +6,7 @@ interface FormInputProps {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder: string;
   type?: string;
-icon?: ReactNode;
+  icon?: ReactNode;
   onFocus?: () => void;
   onBlur?: () => void;
 }
@@ -21,20 +21,20 @@ export default function FormInput({
   onBlur,
 }: FormInputProps) {
   const handleFocus = () => {
- if (onFocus) {
+    if (onFocus) {
       onFocus();
     }
   };
 
   const handleBlur = () => {
-if (onBlur) {
+    if (onBlur) {
       onBlur();
     }
   };
 
   return (
     <div className={style.signin__forminputblock}>
-     {icon && <div className={style.signin__forminputicon}>{icon}</div>}
+      {icon && <div className={style.signin__forminputicon}>{icon}</div>}
       <input
         type={type}
         value={value}

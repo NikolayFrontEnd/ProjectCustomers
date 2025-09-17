@@ -1,6 +1,6 @@
 import style from "./SignIn.module.css";
-import logo from "../assets/Logo.png";
-import { SigninForm } from "../components/SigninComponent/SigninForm";
+import logo from "../../assets/Logo.png";
+import { SigninForm } from "../../components/SigninComponent/SigninForm";
 export const SignIn = () => {
   return (
     <div className={style.signIn}>
