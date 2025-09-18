@@ -1,43 +1,37 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import style from "../MainBlock.module.css";
-import type { User } from "../../../types/User";
 import { ConfirmationModal } from "../../ConfirmationModal/ConfirmationModal";
 import { Toolbar } from "../../Toolbar/Toolbar";
 import { UserTable } from "../../UserTable/UserTable";
 import { ScrollToTopButton } from "../../ScrollToTopButton/ScrollToTopButton";
+import { useScrollToTop } from "../../../hooks/useScrollToTop";
+import { usePagination } from "../../../hooks/usePagination";
+import users from '../../../assets/users.json'
 
-type ScheduledMembershipCancellationsWidgetProps = {
-  users: User[];
-  totalUsers: number;
-  showScrollButton: boolean;
-  pageSize: number;
-  onPageSizeChange: (size: number) => void;
-  onFirst: () => void;
-  onLast: () => void;
-  onNext: () => void;
-  onPrev: () => void;
-  onScrollToTop: () => void;
-};
 
-export const ScheduledMembershipCancellationsWidget: React.FC<ScheduledMembershipCancellationsWidgetProps> = ({
-  users,
-  totalUsers,
-  showScrollButton,
-  pageSize,
-  onPageSizeChange,
-  onFirst,
-  onLast,
-  onNext,
-  onPrev,
-  onScrollToTop,
-}) => {
+
+export const ScheduledMembershipCancellationsWidget  = () => {
   const [modalOpen, setModalOpen] = useState(false);
+  const { showButton, scrollToTop } = useScrollToTop();
+  const {
+    currentPage,
+    pageSize,
+    setPageSize,
+    goFirst,
+    goLast,
+    goNext,
+    goPrev,
+  } = usePagination(users.users.length);
+
+  const currentUsers = users.users.slice(
+    currentPage * pageSize,
+    currentPage * pageSize + pageSize,
+  );
 
   const handleShowModal = () => setModalOpen(true);
   const handleCloseModal = () => setModalOpen(false);
   const handleConfirmModal = () => {
     setModalOpen(false);
-
   };
 
   const tableConfig = {
@@ -67,23 +61,23 @@ export const ScheduledMembershipCancellationsWidget: React.FC<ScheduledMembershi
 
       <Toolbar
         pageSize={pageSize}
-        totalUsers={totalUsers}
-        onPageSizeChange={onPageSizeChange}
-        onFirst={onFirst}
-        onLast={onLast}
-        onNext={onNext}
-        onPrev={onPrev}
+        totalUsers={users.users.length}
+        onPageSizeChange={setPageSize}
+        onFirst={goFirst}
+        onLast={goLast}
+        onNext={goNext}
+        onPrev={goPrev}
         showSearch={tableConfig.showSearch}
       />
 
       <UserTable
-        users={users}
+        users={currentUsers}
         columns={tableConfig.columns}
         renderActions={tableConfig.renderActions}
         showScheduled={tableConfig.showScheduled}
       />
 
-      <ScrollToTopButton visible={showScrollButton} onClick={onScrollToTop} />
+      <ScrollToTopButton visible={showButton} onClick={scrollToTop} />
     </div>
   );
 };
