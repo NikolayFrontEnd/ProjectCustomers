@@ -1,48 +1,57 @@
 import style from "./Signinform.module.css";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import Button from "../ButtonForm/Button";
 import FormInput from "../FormInput/FormInput";
 import { ErrorMessage } from "../Error/ErrorMessage";
 import LockIcon from "../Icons/LockIcon";
-export const SigninForm = () => {
-  const navigate = useNavigate();
-  const [isFocused, setIsFocused] = useState(false);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const regex = /^\S+@\S+\.\S+$/;
-    if (!regex.test(email) || password.length < 6) {
-      setError(true);
-    } else {
-      navigate("/main");
-    }
-  };
+interface SigninFormProps {
+  email: string;
+  password: string;
+  error: boolean;
+  isFocused: boolean;
+  onSubmit: (e: React.FormEvent) => void;
+  onEmailChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onPasswordChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onFocus: () => void;
+  onBlur: () => void;
+}
+export const SigninForm = ({
+  email,
+  password,
+  error,
+  isFocused,
+  onSubmit,
+  onEmailChange,
+  onPasswordChange,
+  onFocus,
+  onBlur,
+}: SigninFormProps) => {
+
+
+;
 
   return (
-    <form onSubmit={handleSubmit} className={style.signin__form}>
+    <form onSubmit={onSubmit} className={style.signin__form}>
       <div className={style.signin__formtitle}>Sign in</div>
 
-      <FormInput
+  <FormInput
         value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        onChange={onPasswordChange}
         placeholder="Password"
         type="password"
         icon={<LockIcon />}
-        onFocus={() => setIsFocused(true)}
-        onBlur={() => setIsFocused(false)}
+        onFocus={onFocus}
+        onBlur={onBlur}
       />
 
       <FormInput
         value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        onChange={onEmailChange}
         placeholder="Email"
-        onFocus={() => setIsFocused(true)}
-        onBlur={() => setIsFocused(false)}
+        onFocus={onFocus}
+        onBlur={onBlur}
       />
+
 
       <ErrorMessage message="Wrong password or email" visible={error} />
 

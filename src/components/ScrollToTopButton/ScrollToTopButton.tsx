@@ -1,5 +1,5 @@
 import style from "../MainComponent/MainBlock.module.css";
-import upIcon from "../../assets/Up.png";
+import GoUpIcon from "../Icons/GoUpIcon";
 
 type ScrollToTopButtonProps = {
   visible: boolean;
@@ -14,7 +14,7 @@ export const ScrollToTopButton = ({
 
   return (
     <div onClick={onClick} className={style.MainBlockConteiner__circleArrow}>
-      <img src={upIcon} />
+   <GoUpIcon/>
     </div>
   );
 };
