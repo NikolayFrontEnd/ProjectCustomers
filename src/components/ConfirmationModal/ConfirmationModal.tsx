@@ -1,6 +1,6 @@
 import React from "react";
 import style from "../MainComponent/MainBlock.module.css";
-import Buttons from "../../assets/Buttons.png";
+import ButtonExit from "../Icons/ButtonExit";
 
 type ConfirmationModalProps = {
   isOpen: boolean;
@@ -26,17 +26,16 @@ export const ConfirmationModal = ({
   if (!isOpen) return null;
 
   return (
-    <div
+    <div 
       className={style.MainBlockConteiner__modal}
       onClick={handleBackdropClick}
     >
       <div className={style.MainBlockConteiner__modalBlock}>
-        <img
-          className={style.MainBlockConteiner__modalBlock__img}
-          onClick={onClose}
-          src={Buttons}
-          alt="Close"
-        />
+        <div className={style.MainBlockConteiner__modalBlock__img}
+          onClick={onClose}>
+<ButtonExit/>
+        </div>
+
         <div className={style.MainBlockConteiner__modalBlock__text}>
           {title}
         </div>

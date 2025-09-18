@@ -1,5 +1,5 @@
 import style from "./Header.module.css";
-import logo from "../../assets/LogoGreen.png";
+import HeaderIcon from "../Icons/HeaderIcon";
 type PageType = 0 | 1 | 2;
 type HeaderProps = {
   page: PageType;
@@ -10,7 +10,7 @@ export const Header: React.FC<HeaderProps> = ({ page, onPageChange }) => {
   return (
     <div className={style.header}>
       <div className={style.header__logo}>
-        <img src={logo} />
+      <HeaderIcon/>
       </div>
 
       <div className={style.header__menu}>

@@ -1,8 +1,8 @@
 import style from "./SignIn.module.css";
-import logo from "../../assets/Logo.png";
 import { SigninForm } from "../../components/SigninComponent/SigninForm";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import SignInLogoIcon from "../../components/Icons/SignInLogoIcon";
 export const SignIn = () => {
   const navigate = useNavigate();
   const [isFocused, setIsFocused] = useState(false);
@@ -33,7 +33,8 @@ export const SignIn = () => {
   return (
     <div className={style.signIn}>
       <div className={style.signin__logo}>
-        <img src={logo} />
+
+     <SignInLogoIcon/>
       </div>
 
       <SigninForm
