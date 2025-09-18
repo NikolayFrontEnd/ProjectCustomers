@@ -14,11 +14,13 @@ interface SigninFormProps {
   onPasswordChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onFocus: () => void;
   onBlur: () => void;
+  errorLogPas: boolean;
 }
 export const SigninForm = ({
   email,
   password,
   error,
+  errorLogPas,
   isFocused,
   onSubmit,
   onEmailChange,
@@ -48,8 +50,17 @@ export const SigninForm = ({
         onBlur={onBlur}
       />
 
-      <ErrorMessage message="Wrong password or email" visible={error} />
+  <ErrorMessage 
+        errorLogPas="" 
+        message="Invalid login format!" 
+        visible={error} 
+      />
 
+      <ErrorMessage 
+        errorLogPas="Incorrect login or password!" 
+        message="" 
+        visible={errorLogPas} 
+      />
       <Button text="Sign in" type="submit" activeBtn={isFocused} />
     </form>
   );
