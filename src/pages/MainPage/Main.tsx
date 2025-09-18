@@ -1,16 +1,16 @@
 import { useState } from "react";
 import users from "../../assets/users.json";
 import style from "./Main.module.css";
-import styles from "../../components/MainComponent/MainBlock.module.css";
 import { Header } from "../../components/Header/Header";
-import { MainBlock } from "../../components/MainComponent/MainBlock";
 import type { PageType } from "../../types/User";
 import { usePagination } from "../../hooks/usePagination";
 import { useScrollToTop } from "../../hooks/useScrollToTop";
+import { CustomersWidget } from "../../components/MainComponent/MainWidgets/CustomersWidget";
+import { ScheduledMembershipCancellationsWidget } from "../../components/MainComponent/MainWidgets/ScheduleMembershipCancellationWidget";
+import { ExecutedMembershipCancellationsWidget } from "../../components/MainComponent/MainWidgets/ExecutedMembershipCansellationsWidget";
 
 const Main = () => {
   const [page, setPage] = useState<PageType>(0);
-  const [modalOpen, setModalOpen] = useState(false);
   const { showButton, scrollToTop } = useScrollToTop();
   const {
     currentPage,
@@ -27,77 +27,36 @@ const Main = () => {
     currentPage * pageSize + pageSize,
   );
 
-  const handleShowModal = () => setModalOpen(true);
-  const handleCloseModal = () => setModalOpen(false);
-  const handleConfirmModal = () => {
-    setModalOpen(false);
-  };
+  const renderWidget = () => {
+    const widgetProps = {
+      users: currentUsers,
+      totalUsers: users.users.length,
+      showScrollButton: showButton,
+      pageSize,
+      onPageSizeChange: setPageSize,
+      onFirst: goFirst,
+      onLast: goLast,
+      onNext: goNext,
+      onPrev: goPrev,
+      onScrollToTop: scrollToTop,
+    };
 
-  const getTableConfig = () => {
     switch (page) {
       case 0:
-        return {
-          columns: ["Name", "Phone", "Email", "Actions"],
-          showSearch: true,
-          renderActions: () => (
-            <button className={styles.usertable__button}>
-              Cancel membership
-            </button>
-          ),
-        };
+        return <CustomersWidget {...widgetProps} />;
       case 1:
-        return {
-          columns: ["Name", "Phone", "Email", "Scheduled", "Actions"],
-          showSearch: false,
-          showScheduled: true,
-          renderActions: () => (
-            <button
-              onClick={handleShowModal}
-              className={styles.usertable__buttonAbort}
-            >
-              Abort
-            </button>
-          ),
-        };
+        return <ScheduledMembershipCancellationsWidget {...widgetProps} />;
       case 2:
-        return {
-          columns: ["Name", "Phone", "Email", "Executed", "Status"],
-          showSearch: false,
-          showExecuted: true,
-          showStatus: true,
-          renderActions: () => null,
-        };
+        return <ExecutedMembershipCancellationsWidget {...widgetProps} />;
       default:
-        return {
-          columns: ["Name", "Phone", "Email", "Actions"],
-          showSearch: true,
-          renderActions: () => null,
-        };
+        return <CustomersWidget {...widgetProps} />;
     }
   };
 
-  const tableConfig = getTableConfig();
   return (
     <div className={style.container}>
       <Header page={page} onPageChange={setPage} />
-      <MainBlock
-        users={currentUsers}
-        totalUsers={users.users.length}
-        page={page}
-        modalOpen={modalOpen}
-        showScrollButton={showButton}
-        tableConfig={tableConfig}
-        pageSize={pageSize}
-        onPageSizeChange={setPageSize}
-        onFirst={goFirst}
-        onLast={goLast}
-        onNext={goNext}
-        onPrev={goPrev}
-        onShowModal={handleShowModal}
-        onCloseModal={handleCloseModal}
-        onConfirmModal={handleConfirmModal}
-        onScrollToTop={scrollToTop}
-      />
+      {renderWidget()}
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import style from "./Header.module.css";
 import HeaderIcon from "../Icons/HeaderIcon";
+import { Tab } from "./HeaderTab";
 type PageType = 0 | 1 | 2;
 type HeaderProps = {
   page: PageType;
@@ -7,6 +8,11 @@ type HeaderProps = {
 };
 
 export const Header: React.FC<HeaderProps> = ({ page, onPageChange }) => {
+  const tabs = [
+    { id: 0, label: "Customers" },
+    { id: 1, label: "Scheduled Membership Cancellation" },
+    { id: 2, label: "Executed Membership Cancellation" },
+  ]as const; 
   return (
     <div className={style.header}>
       <div className={style.header__logo}>
@@ -14,36 +20,16 @@ export const Header: React.FC<HeaderProps> = ({ page, onPageChange }) => {
       </div>
 
       <div className={style.header__menu}>
-        <div
-          onClick={() => onPageChange(0)}
-          className={
-            page === 0
-              ? style.header__menu__item__active
-              : style.header__menu__item
-          }
-        >
-          Customers
-        </div>
-        <div
-          onClick={() => onPageChange(1)}
-          className={
-            page === 1
-              ? style.header__menu__item__active
-              : style.header__menu__item
-          }
-        >
-          Scheduled Membership Cancellation
-        </div>
-        <div
-          onClick={() => onPageChange(2)}
-          className={
-            page === 2
-              ? style.header__menu__item__active
-              : style.header__menu__item
-          }
-        >
-          Executed Membership Cancellation
-        </div>
+
+{tabs.map((tab) => (
+          <Tab
+            key={tab.id}
+            label={tab.label}
+            isActive={page === tab.id}
+            onClick={() => onPageChange(tab.id)}
+          />
+        ))}
+
       </div>
     </div>
   );
