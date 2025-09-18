@@ -4,12 +4,12 @@ import { SigninForm } from "../../components/SigninComponent/SigninForm";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 export const SignIn = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const [isFocused, setIsFocused] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
-    const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const regex = /^\S+@\S+\.\S+$/;
     if (!regex.test(email) || password.length < 6) {
@@ -25,7 +25,7 @@ export const SignIn = () => {
   };
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
-    if (error) setError(false); 
+    if (error) setError(false);
   };
   const handleFocus = () => setIsFocused(true);
   const handleBlur = () => setIsFocused(false);
@@ -36,7 +36,7 @@ export const SignIn = () => {
         <img src={logo} />
       </div>
 
- <SigninForm
+      <SigninForm
         email={email}
         password={password}
         error={error}

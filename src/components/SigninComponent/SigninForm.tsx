@@ -26,15 +26,11 @@ export const SigninForm = ({
   onFocus,
   onBlur,
 }: SigninFormProps) => {
-
-
-;
-
   return (
     <form onSubmit={onSubmit} className={style.signin__form}>
       <div className={style.signin__formtitle}>Sign in</div>
 
-  <FormInput
+      <FormInput
         value={password}
         onChange={onPasswordChange}
         placeholder="Password"
@@ -51,7 +47,6 @@ export const SigninForm = ({
         onFocus={onFocus}
         onBlur={onBlur}
       />
-
 
       <ErrorMessage message="Wrong password or email" visible={error} />
 

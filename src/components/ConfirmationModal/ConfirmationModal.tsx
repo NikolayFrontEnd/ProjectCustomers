@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React from "react";
 import style from "../MainComponent/MainBlock.module.css";
 import Buttons from "../../assets/Buttons.png";
 
@@ -19,28 +19,23 @@ export const ConfirmationModal = ({
   confirmText,
   cancelText,
 }: ConfirmationModalProps) => {
-  const dialogRef = useRef<HTMLDialogElement>(null);
-
-  useEffect(() => {
-    if (isOpen) dialogRef.current?.showModal();
-    else dialogRef.current?.close();
-  }, [isOpen]);
-
-  const handleClick = (e: React.MouseEvent<HTMLDialogElement>) => {
+  const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) onClose();
   };
 
+  if (!isOpen) return null;
+
   return (
-    <dialog
-      ref={dialogRef}
-      onClick={handleClick}
+    <div
       className={style.MainBlockConteiner__modal}
+      onClick={handleBackdropClick}
     >
       <div className={style.MainBlockConteiner__modalBlock}>
         <img
           className={style.MainBlockConteiner__modalBlock__img}
           onClick={onClose}
           src={Buttons}
+          alt="Close"
         />
         <div className={style.MainBlockConteiner__modalBlock__text}>
           {title}
@@ -60,6 +55,6 @@ export const ConfirmationModal = ({
           </button>
         </div>
       </div>
-    </dialog>
+    </div>
   );
 };

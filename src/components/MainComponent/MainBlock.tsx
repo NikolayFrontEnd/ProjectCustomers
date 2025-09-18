@@ -1,90 +1,67 @@
-import users from "../../assets/users.json";
-import { useState } from "react";
-import type { PageType } from "../../types/User";
+import type { PageType, User } from "../../types/User";
 import style from "./MainBlock.module.css";
-import { useScrollToTop } from "../../hooks/useScrollToTop";
-import { usePagination } from "../../hooks/usePagination";
+
 import { ConfirmationModal } from "../ConfirmationModal/ConfirmationModal";
 import { UserTable } from "../UserTable/UserTable";
 import { ScrollToTopButton } from "../ScrollToTopButton/ScrollToTopButton";
 import { Toolbar } from "../Toolbar/Toolbar";
-type MainBlockProps = {
-  page: PageType;
+
+type TableConfig = {
+  columns: string[];
+  showSearch: boolean;
+  showScheduled?: boolean;
+  showExecuted?: boolean;
+  showStatus?: boolean;
+  renderActions: () => React.ReactNode;
 };
 
-export const MainBlock: React.FC<MainBlockProps> = ({ page }) => {
-  const [modalOpen, setModalOpen] = useState(false);
-  const { showButton, scrollToTop } = useScrollToTop();
+type MainBlockProps = {
+  users: User[];
+  totalUsers: number;
 
-  const {
-    currentPage,
-    pageSize,
-    setPageSize,
-    goFirst,
-    goLast,
-    goNext,
-    goPrev,
-  } = usePagination(users.users.length);
+  page: PageType;
+  modalOpen: boolean;
+  showScrollButton: boolean;
 
-  const currentUsers = users.users.slice(
-    currentPage * pageSize,
-    currentPage * pageSize + pageSize,
-  );
+  tableConfig: TableConfig;
 
-  const showModal = () => setModalOpen(true);
-  const closeModal = () => setModalOpen(false);
+  pageSize: number;
+  onPageSizeChange: (size: number) => void;
+  onFirst: () => void;
+  onLast: () => void;
+  onNext: () => void;
+  onPrev: () => void;
 
-  const getTableConfig = () => {
-    switch (page) {
-      case 0:
-        return {
-          columns: ["Name", "Phone", "Email", "Actions"],
-          showSearch: true,
-          renderActions: () => (
-            <button className={style.usertable__button}>
-              Cancel membership
-            </button>
-          ),
-        };
-      case 1:
-        return {
-          columns: ["Name", "Phone", "Email", "Scheduled", "Actions"],
-          showSearch: false,
-          showScheduled: true,
-          renderActions: () => (
-            <button
-              onClick={showModal}
-              className={style.usertable__buttonAbort}
-            >
-              Abort
-            </button>
-          ),
-        };
-      case 2:
-        return {
-          columns: ["Name", "Phone", "Email", "Executed", "Status"],
-          showSearch: false,
-          showExecuted: true,
-          showStatus: true,
-          renderActions: () => null,
-        };
-      default:
-        return {
-          columns: ["Name", "Phone", "Email", "Actions"],
-          showSearch: true,
-          renderActions: () => null,
-        };
-    }
-  };
+  onShowModal: () => void;
+  onCloseModal: () => void;
+  onConfirmModal: () => void;
 
-  const tableConfig = getTableConfig();
+  onScrollToTop: () => void;
+};
+export const MainBlock: React.FC<MainBlockProps> = ({
+  users,
+  totalUsers,
 
+  modalOpen,
+  showScrollButton,
+  tableConfig,
+  pageSize,
+  onPageSizeChange,
+  onFirst,
+  onLast,
+  onNext,
+  onPrev,
+
+  onCloseModal,
+  onConfirmModal,
+  onScrollToTop,
+}) => {
   return (
     <div className={style.MainBlockConteiner}>
       <ConfirmationModal
         isOpen={modalOpen}
-        onClose={closeModal}
-        onConfirm={closeModal}
+        onClose={onCloseModal}
+        onConfirm={onConfirmModal}
         title="Are you sure you want to abort this Scheduled Membership Cancellation?"
         confirmText="Abort"
         cancelText="Cancel"
@@ -92,17 +69,17 @@ export const MainBlock: React.FC<MainBlockProps> = ({ page }) => {
 
       <Toolbar
         pageSize={pageSize}
-        totalUsers={users.users.length}
-        onPageSizeChange={setPageSize}
-        onFirst={goFirst}
-        onLast={goLast}
-        onNext={goNext}
-        onPrev={goPrev}
+        totalUsers={totalUsers}
+        onPageSizeChange={onPageSizeChange}
+        onFirst={onFirst}
+        onLast={onLast}
+        onNext={onNext}
+        onPrev={onPrev}
         showSearch={tableConfig.showSearch}
       />
 
       <UserTable
-        users={currentUsers}
+        users={users}
         columns={tableConfig.columns}
         renderActions={tableConfig.renderActions}
         showScheduled={tableConfig.showScheduled}
@@ -110,7 +87,7 @@ export const MainBlock: React.FC<MainBlockProps> = ({ page }) => {
         showStatus={tableConfig.showStatus}
       />
 
-      <ScrollToTopButton visible={showButton} onClick={scrollToTop} />
+      <ScrollToTopButton visible={showScrollButton} onClick={onScrollToTop} />
     </div>
   );
 };
