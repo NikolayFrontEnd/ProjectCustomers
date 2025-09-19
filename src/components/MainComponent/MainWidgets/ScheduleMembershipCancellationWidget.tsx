@@ -21,6 +21,8 @@ export const ScheduledMembershipCancellationsWidget  = () => {
     goLast,
     goNext,
     goPrev,
+        isFirstPage, 
+    isLastPage
   } = usePagination(users.users.length);
 
   const currentUsers = users.users.slice(
@@ -68,6 +70,8 @@ export const ScheduledMembershipCancellationsWidget  = () => {
         onNext={goNext}
         onPrev={goPrev}
         showSearch={tableConfig.showSearch}
+             isFirstPage={isFirstPage} 
+        isLastPage={isLastPage}
       />
 
       <UserTable

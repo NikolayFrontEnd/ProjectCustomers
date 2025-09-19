@@ -14,6 +14,8 @@ type ToolbarProps = {
   onNext: () => void;
   onPrev: () => void;
   showSearch?: boolean;
+    isFirstPage: boolean;
+  isLastPage: boolean;
 };
 
 export const Toolbar = ({
@@ -25,6 +27,8 @@ export const Toolbar = ({
   onNext,
   onPrev,
   showSearch = true,
+    isFirstPage,
+  isLastPage,
 }: ToolbarProps) => {
   const toolbarClass = showSearch ? style.toolbar : style.toolbarNumber;
 
@@ -38,6 +42,8 @@ export const Toolbar = ({
           onPrev={onPrev}
           onNext={onNext}
           onLast={onLast}
+       isFirstPage = {isFirstPage}
+  isLastPage = {isLastPage}
         />
         <PageSizeSelector value={pageSize} onChange={onPageSizeChange} />
         <PaginationInfo current={pageSize} total={totalUsers} />

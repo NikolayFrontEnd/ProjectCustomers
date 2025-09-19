@@ -7,7 +7,6 @@ import { useScrollToTop } from "../../../hooks/useScrollToTop";
 import { usePagination } from "../../../hooks/usePagination";
 import users from '../../../assets/users.json'
 
-
 export const CustomersWidget = () => {
   const { showButton, scrollToTop } = useScrollToTop();
   const {
@@ -18,6 +17,8 @@ export const CustomersWidget = () => {
     goLast,
     goNext,
     goPrev,
+    isFirstPage, 
+    isLastPage
   } = usePagination(users.users.length);
 
   const currentUsers = users.users.slice(
@@ -46,6 +47,8 @@ export const CustomersWidget = () => {
         onNext={goNext}
         onPrev={goPrev}
         showSearch={tableConfig.showSearch}
+     isFirstPage={isFirstPage} 
+        isLastPage={isLastPage}
       />
 
       <UserTable

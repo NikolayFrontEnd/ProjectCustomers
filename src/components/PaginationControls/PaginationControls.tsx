@@ -9,6 +9,8 @@ type PaginationControlsProps = {
   onPrev: () => void;
   onNext: () => void;
   onLast: () => void;
+  isFirstPage:boolean;
+  isLastPage:boolean;
 };
 
 export const PaginationControls = ({
@@ -16,18 +18,20 @@ export const PaginationControls = ({
   onPrev,
   onNext,
   onLast,
+   isFirstPage,
+  isLastPage
 }: PaginationControlsProps) => (
   <div className={style.toolbar__buutonsSwitch}>
-    <button onClick={onFirst} className={style.toolbar__buttonChange}>
+    <button onClick={onFirst} className={style.toolbar__buttonChange} disabled={isFirstPage}>
       <FirstIcon />
     </button>
-    <button onClick={onPrev} className={style.toolbar__buttonChange}>
+    <button onClick={onPrev} className={style.toolbar__buttonChange} disabled={isFirstPage}>
       <ArrowLeftIcon />
     </button>
-    <button onClick={onNext} className={style.toolbar__buttonChange}>
+    <button onClick={onNext} className={style.toolbar__buttonChange} disabled={isLastPage}>
       <ArrowRightIcon />
     </button>
-    <button onClick={onLast} className={style.toolbar__buttonChange}>
+    <button onClick={onLast} className={style.toolbar__buttonChange} disabled={isLastPage}>
       <LastIcon />
     </button>
   </div>
